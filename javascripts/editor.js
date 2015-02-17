@@ -24,7 +24,8 @@
 	function init() {
 		var editorElementList = $$('.editor');
 
-		editorElementList.forEach(function(form) {
+		editorElementList.forEach(function(form, index) {
+			form.name = 'editor'+index;
 			var code = form.innerHTML.trim();
 			var html = [];
 			html.push('<div class="editor__code">'+code+'</div>');
