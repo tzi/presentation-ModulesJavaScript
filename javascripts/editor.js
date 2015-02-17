@@ -57,11 +57,6 @@
 				console.clear();
 			}, false);
 		});
-
-		function $$(selector, context) {
-			context = context||document;
-		    return Array.prototype.slice.call(context.querySelectorAll(selector), 0);
-		}
 	}
 
 	function getConsole(form) {
