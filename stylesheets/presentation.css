@@ -45,7 +45,7 @@ section {
  ====================================================*/
 .bespoke-slide h1,
 .bespoke-slide h2 {
-    margin: 0;
+    margin-top: 0;
 }
 .bespoke-slide blockquote {
     font-family: Baskerville;
@@ -97,43 +97,4 @@ section .classyNote {
     color: #FFF;
     background: #111111;
     padding: 1em;
-}
-
-
-/* Editor styles
- ====================================================*/
-.code {
-    background: white;
-    border: 1px #aaa solid;
-    font-size: 20px;
-}
-.code__editor { 
-    height: 300px;
-}
-.code__console,
-.code__action {
-    border-top: 1px #aaa solid;
-}
-.code__console > li,
-.code__action {
-    padding-left: 53px;
-}
-.code__console {
-    height: 100px;
-    padding: 0;
-    margin: 0;
-    overflow: auto;
-}
-.code__console > li {
-    border-bottom: 1px #ddd solid;
-    list-style-type: none;
-    font-family: "Monaco","Menlo","Ubuntu Mono","Consolas","source-code-pro",monospace;
-    color: black;
-}
-.code__action {
-    text-align: right;
-}
-.code__status {
-    float: left;
-    color: #999;
 }

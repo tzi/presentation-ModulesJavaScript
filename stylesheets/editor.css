@@ -1,0 +1,42 @@
+.editor {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+
+    background: white;
+    border: 1px #aaa solid;
+    font-size: 20px;
+}
+.editor__code {
+    flex: 1 1 0;
+    overflow: auto;
+}
+.editor__console {
+    flex: 0 0 0;
+}
+
+.console__log {
+    padding: 0;
+    margin: 0;
+}
+.console__log > li {
+    border-bottom: 1px #ddd solid;
+    list-style-type: none;
+    font-family: "Monaco","Menlo","Ubuntu Mono","Consolas","source-code-pro",monospace;
+    color: black;
+}
+.console__log > li,
+.console__action {
+    padding-left: 53px;
+}
+.console__log,
+.console__action {
+    border-top: 1px #aaa solid;
+}
+.console__action {
+    text-align: right;
+}
+.console__status {
+    float: left;
+    color: #999;
+}
