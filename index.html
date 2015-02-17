@@ -23,12 +23,16 @@
 
     <section>
         <div class="content content--text">
-            <p>Du texte</p>
+            <h2>La définition des fonctions</h2>
             <form name="demo" class="code">
-function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-}
+function foo() {}
+console.log(typeof foo, foo.name);
+
+var foo = function () {};
+console.log(typeof foo, foo.name);
+
+var foo = function fooF() {};
+console.log(typeof foo, foo.name);
             </form>
          </div>
     </section>
@@ -56,7 +60,8 @@ function getRandomKey(length) {
 
 </article>
 <script src="javascripts/bespoke.js"></script>
-<script src="javascripts/ace/ace.js"></script>
 <script src="javascripts/presentation.js"></script>
+<script src="javascripts/ace/ace.js"></script>
+<script src="javascripts/editor.js"></script>
 </body>
 </html>

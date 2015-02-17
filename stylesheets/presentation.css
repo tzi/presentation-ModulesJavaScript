@@ -3,9 +3,10 @@
  ====================================================*/
 body {
     font-family: "Source Sans Pro";
-    color: #DEDEDE;
     margin: 0;
     padding: 0;
+    font-size: 20px;
+    color: #222;
 }
 
 section {
@@ -13,7 +14,6 @@ section {
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
-    font-size: 3em;
     width: 100%;
     display: none;
 }
@@ -36,6 +36,8 @@ section {
     vertical-align: middle;
     text-align: center;
     background: #211E1E;
+    color: #DEDEDE;
+    font-size: 2em;
 }
 
 
@@ -55,28 +57,13 @@ section {
     display: block;
     text-align: right;
 }
-.bespoke-slide ul {
-    font-size: 0.8em;
-    text-align: left;
-    display: inline-block;
-    margin: 0 auto;
-    list-style-type: none;
-}
 
-.pgroup {
-    display: inline-block;
-}
-.content--text ol,
-.content--text ul,
-.content--text p {
-    font-size: 0.7em;
-    text-align: left;
-}
-.content--text ol,
-.content--text ul {
+ol,
+ul {
+    font-size: inherit;
     display: block;
 }
-.content--text ul {
+ul {
     list-style: disc inside;
 }
 
@@ -117,15 +104,36 @@ section .classyNote {
  ====================================================*/
 .code {
     background: white;
+    border: 1px #aaa solid;
+    font-size: 20px;
 }
 .code__editor { 
-    height: 250px;
-    border-bottom: 1px #DDD solid;
+    height: 300px;
 }
-.code__console { 
-    height: 50px;
-    border-bottom: 1px #DDD solid;
+.code__console,
+.code__action {
+    border-top: 1px #aaa solid;
+}
+.code__console > li,
+.code__action {
+    padding-left: 53px;
+}
+.code__console {
+    height: 100px;
+    padding: 0;
+    margin: 0;
+    overflow: auto;
+}
+.code__console > li {
+    border-bottom: 1px #ddd solid;
+    list-style-type: none;
+    font-family: "Monaco","Menlo","Ubuntu Mono","Consolas","source-code-pro",monospace;
+    color: black;
 }
 .code__action {
     text-align: right;
+}
+.code__status {
+    float: left;
+    color: #999;
 }
