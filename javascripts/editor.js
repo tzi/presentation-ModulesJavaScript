@@ -51,6 +51,11 @@
 				event.preventDefault();
 				run(form);
 			}, false);
+			form.addEventListener('keydown', function(event) {
+				if (event.which === 13 && event.ctrlKey) {
+					run(form);
+				}
+			}, false);
 			form.querySelector('[value="clear"]').addEventListener('click', function(event){
 				event.preventDefault();
 				var console = getConsole(form);
@@ -76,7 +81,13 @@
 				statusContainer.innerHTML = status.join(' - ');
 			},
 			log: function(message) {
-	    		message = Array.prototype.slice.call(arguments, 0).join(', ');
+				messageList = Array.prototype.slice.call(arguments, 0);
+				messageList.forEach(function(m, i){
+				if (m === '') {
+				    messageList[i] = '<i>empty string</i>';
+				}
+				});
+				message = messageList.join(', ');
 				logContainer.innerHTML += '<li class="log log--message">'+message+'</li>';
 			},
 			error: function(error) {
