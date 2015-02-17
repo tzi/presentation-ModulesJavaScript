@@ -4,6 +4,14 @@ var editorMap = [];
 
 document.addEventListener('DOMContentLoaded', function(){
 	$$('.code').forEach(function(form) {
+		var code = form.innerHTML.trim();
+		var html = [];
+		html.push('<div class="code__editor">'+code+'</div>');
+		html.push('<ul  class="code__console"></ul>');
+		html.push('<div class="code__action"><button>Run</button></div>');	
+		form.innerHTML= html.join('');	
+	})
+	$$('.code').forEach(function(form) {
 		var formName = form.name;
 	    var editor = ace.edit(form.querySelector('.code__editor'));
 	    editor.setTheme("ace/theme/xcode");
@@ -40,5 +48,11 @@ function safeEval(code, console) {
 	}
 }
 
-function getConsoleByName(formName) {
+function getConsoleByForm(form) {
+	var element = form.querySelector('.code__console');
+	return {
+		log: function(message) {
+
+		}
+	}
 }

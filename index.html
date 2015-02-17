@@ -25,16 +25,10 @@
         <div class="content content--text">
             <p>Du texte</p>
             <form name="demo" class="code">
-                <div class="code__editor">
 function foo(items) {
     var x = "All this is syntax highlighted";
     return x;
 }
-                </div>
-                <div class="code__console"></div>
-                <div class="code__action">
-                    <button>Run</button>
-                </div>
             </form>
          </div>
     </section>
@@ -44,23 +38,17 @@ function foo(items) {
         <div class="content content--text">
             <p>Du texte 2</p>
             <form name="namespace" class="code">
-                <div class="code__editor">
-    for (var i=0; i&lt;10; i++) {
-        console.log(getRandomKey(16));
-    }
+for (var i=0; i&lt;10; i++) {
+    console.log(getRandomKey(16));
+}
 
-    function getRandomKey(length) {
-        key = '';
-        for (i=0; i&lt;length; i++) {
-            key += Math.floor(Math.random() * 10);
-        }
-        return key;
+function getRandomKey(length) {
+    key = '';
+    for (i=0; i&lt;length; i++) {
+        key += Math.floor(Math.random() * 10);
     }
-                </div>
-                <div class="code__console"></div>
-                <div class="code__action">
-                    <button>Run</button>
-                </div>
+    return key;
+}
             </form>
         </div>
     </section>
