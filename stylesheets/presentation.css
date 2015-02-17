@@ -2,7 +2,6 @@
 /* Slides
  ====================================================*/
 body {
-    background: #211E1E;
     font-family: "Source Sans Pro";
     color: #DEDEDE;
     margin: 0;
@@ -36,6 +35,7 @@ section {
 .content--card {
     vertical-align: middle;
     text-align: center;
+    background: #211E1E;
 }
 
 
@@ -115,6 +115,17 @@ section .classyNote {
 
 /* Editor styles
  ====================================================*/
-.editor { 
-    height: 200px;
+.code {
+    background: white;
+}
+.code__editor { 
+    height: 250px;
+    border-bottom: 1px #DDD solid;
+}
+.code__console { 
+    height: 50px;
+    border-bottom: 1px #DDD solid;
+}
+.code__action {
+    text-align: right;
 }
