@@ -84,9 +84,15 @@
 			log: function(message) {
 				messageList = Array.prototype.slice.call(arguments, 0);
 				messageList.forEach(function(m, i){
-				if (m === '') {
-				    messageList[i] = '<i>empty string</i>';
-				}
+					if (m === '') {
+					    messageList[i] = '<i>empty string</i>';
+					}
+					if (typeof m == "undefined") {
+					    messageList[i] = '<i>undefined</i>';
+					}
+					if (m === null) {
+					    messageList[i] = '<i>null</i>';
+					}
 				});
 				message = messageList.join(', ');
 				logContainer.innerHTML += '<li class="log log--message">'+message+'</li>';
