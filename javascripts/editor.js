@@ -6,6 +6,7 @@
 	function run(form) {
 		var code = editorMap[form.name].getSession().getValue();
 		var console = getConsole(form);
+		console.clear();
 		safeEval(code, console);
 
 		function safeEval(code, console) {
@@ -41,7 +42,6 @@
 		});
 
 		editorElementList.forEach(function(form) {
-			console.log(form);
 			var formName = form.name;
 		    var editor = ace.edit(form.querySelector('.editor__code'));
 		    editor.setTheme("ace/theme/xcode");
@@ -72,12 +72,29 @@
 		return {
 			log: function(message) {
 	    		message = Array.prototype.slice.call(arguments, 0).join(', ');
-				statusContainer.innerHTML = (logContainer.childNodes.length + 1) + ' messages';
+				var status = [];
+				status.push(getNowLabel());
+				status.push((logContainer.childNodes.length + 1) + ' messages');
+				statusContainer.innerHTML = status.join(' - ');
 				logContainer.innerHTML += '<li>'+message+'</li>';
 			},
 			clear: function() {
 				statusContainer.innerHTML = '';
 				logContainer.innerHTML = '';
+			}
+		}
+		function getNowLabel() {
+			var now = new Date();
+			var date = [];
+			date.push(zeroPad(now.getHours()));
+			date.push(zeroPad(now.getMinutes()));
+			date.push(zeroPad(now.getSeconds()));
+			return date.join(':');
+
+			function zeroPad(num) {
+			    var s = num+"";
+			    while (s.length < 2) s = "0" + s;
+			    return s;
 			}
 		}
 	}
