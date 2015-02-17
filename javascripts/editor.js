@@ -8,17 +8,15 @@
 		var console = getConsole(form);
 		console.clear();
 		safeEval(code, console);
+		console.updateStatus();
 
 		function safeEval(code, console) {
 			console = console||window.console;
 			try {
 			    eval(code); 
 			} catch (e) {
-			    if (e instanceof SyntaxError) {
-			        console.log(e.message);
-			    } else {
-			        throw( e );
-			    }
+		        console.error(e.message);
+				console.updateStatus();
 			}
 		}
 	}
@@ -70,13 +68,24 @@
 		var logContainer = form.querySelector('.console__log');
 		var statusContainer = form.querySelector('.console__status');
 		return {
-			log: function(message) {
-	    		message = Array.prototype.slice.call(arguments, 0).join(', ');
+			updateStatus: function() {
 				var status = [];
 				status.push(getNowLabel());
-				status.push((logContainer.childNodes.length + 1) + ' messages');
+				if (logContainer.querySelector('.log--error')) {
+					status.push('1 error');
+					statusContainer.classList.add('console__status--error');
+				} else {
+					status.push(logContainer.childNodes.length + ' messages');
+					statusContainer.classList.remove('console__status--error');
+				}
 				statusContainer.innerHTML = status.join(' - ');
-				logContainer.innerHTML += '<li>'+message+'</li>';
+			},
+			log: function(message) {
+	    		message = Array.prototype.slice.call(arguments, 0).join(', ');
+				logContainer.innerHTML += '<li class="log log--message">'+message+'</li>';
+			},
+			error: function(error) {
+				logContainer.innerHTML += '<li class="log log--error">/!\\ '+error+'</li>';
 			},
 			clear: function() {
 				statusContainer.innerHTML = '';
