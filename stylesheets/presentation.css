@@ -1,0 +1,120 @@
+
+/* Slides
+ ====================================================*/
+body {
+    background: #211E1E;
+    font-family: "Source Sans Pro";
+    color: #DEDEDE;
+    margin: 0;
+    padding: 0;
+}
+
+section {
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-size: 3em;
+    width: 100%;
+    display: none;
+}
+
+.bespoke-active {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+
+.content {
+    display: table-cell;
+    padding: 1em;
+    vertical-align: top;
+}
+
+.content--card {
+    vertical-align: middle;
+    text-align: center;
+}
+
+
+/* Content styling
+ ====================================================*/
+.bespoke-slide h1,
+.bespoke-slide h2 {
+    margin: 0;
+}
+.bespoke-slide blockquote {
+    font-family: Baskerville;
+    font-style: italic;
+    margin: 0;
+}
+.bespoke-slide blockquote small {
+    margin-top: 1em;
+    display: block;
+    text-align: right;
+}
+.bespoke-slide ul {
+    font-size: 0.8em;
+    text-align: left;
+    display: inline-block;
+    margin: 0 auto;
+    list-style-type: none;
+}
+
+.pgroup {
+    display: inline-block;
+}
+.content--text ol,
+.content--text ul,
+.content--text p {
+    font-size: 0.7em;
+    text-align: left;
+}
+.content--text ol,
+.content--text ul {
+    display: block;
+}
+.content--text ul {
+    list-style: disc inside;
+}
+
+section a {
+    font-weight: 700;
+    color: #0cf;
+    text-decoration: none;
+}
+
+
+/* Utils for content
+ ====================================================*/
+section .underline {
+    border-bottom: .1em solid white
+}
+
+section .strikethrough {
+    text-decoration: line-through;
+    color: #999
+}
+
+section .classyNote,
+section .classy {
+    font-family: Baskerville;
+    font-style: italic;
+}
+
+section .classyNote {
+    display: block;
+    text-align: center;
+    color: #FFF;
+    background: #111111;
+    padding: 1em;
+}
+
+
+/* Editor styles
+ ====================================================*/
+.editor { 
+    height: 200px;
+}
