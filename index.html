@@ -50,8 +50,8 @@
 <script>
     $$('.editor').forEach(function(element) {
         var editor = ace.edit(element);
-        editor.getSession().setMode('ace/mode/csharp');
         editor.setTheme("ace/theme/xcode");
+        editor.setFontSize(20);
         editor.getSession().setMode("ace/mode/javascript");
     });
 
