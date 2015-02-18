@@ -5,7 +5,7 @@ body {
     font-family: "Source Sans Pro";
     margin: 0;
     padding: 0;
-    font-size: 20px;
+    font-size: 26px;
     color: #222;
 }
 
@@ -28,31 +28,44 @@ section {
 
 .content {
     display: table-cell;
-    padding: 1em;
+    padding: 20px;
     vertical-align: top;
 }
 
 .content--card {
     vertical-align: middle;
     text-align: center;
-    background: #211E1E;
-    color: #DEDEDE;
-    font-size: 2.5em;
+    background: #F01422;
+    color: white;
 }
 
 
-/* Content styling
+/* Content typo styling
  ====================================================*/
-.bespoke-slide h1,
-.bespoke-slide h2 {
-    margin-top: 0;
+h1,
+h2,
+h3 {
+    padding: 20px 40px; 
+    margin: -20px;
+    margin-bottom: 20px;
+    background: #F01422;
+    color: white;
 }
-.bespoke-slide blockquote {
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.6em;
+}
+b {
+    color: #F01422;
+}
+blockquote {
     font-family: Baskerville;
     font-style: italic;
     margin: 0;
 }
-.bespoke-slide blockquote small {
+blockquote small {
     margin-top: 1em;
     display: block;
     text-align: right;
@@ -67,11 +80,17 @@ ul {
     list-style: disc inside;
 }
 
-section a {
+a {
     font-weight: 700;
     color: #0cf;
     text-decoration: none;
 }
+
+.content--card h1,
+.content--card h2 {
+    color: white;
+}
+
 
 
 /* Utils for content
