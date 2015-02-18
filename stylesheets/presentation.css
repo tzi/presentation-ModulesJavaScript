@@ -2,11 +2,12 @@
 /* Slides
  ====================================================*/
 body {
-    font-family: "Source Sans Pro";
+    font-family: "Lora", serif;
     margin: 0;
     padding: 0;
     font-size: 26px;
-    color: #222;
+    line-height: 1.5;
+    color: #494f56;
 }
 
 section {
@@ -28,7 +29,7 @@ section {
 
 .content {
     display: table-cell;
-    padding: 20px;
+    padding: 20px 40px;
     vertical-align: top;
 }
 
@@ -37,6 +38,7 @@ section {
     text-align: center;
     background: #F01422;
     color: white;
+    font-size: 1.5em
 }
 
 
@@ -46,29 +48,26 @@ h1,
 h2,
 h3 {
     padding: 20px 40px; 
-    margin: -20px;
+    margin: -20px -40px;
     margin-bottom: 20px;
     background: #F01422;
     color: white;
+    font-family: "Istok Web", sans-serif;
+    line-height: 1.2;
 }
 h1 {
-    font-size: 2em;
+    font-size: 1.8em;
 }
 h2 {
     font-size: 1.6em;
 }
+h3 {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
 b {
     color: #F01422;
-}
-blockquote {
-    font-family: Baskerville;
-    font-style: italic;
-    margin: 0;
-}
-blockquote small {
-    margin-top: 1em;
-    display: block;
-    text-align: right;
 }
 
 ol,
@@ -79,11 +78,30 @@ ul {
 ul {
     list-style: disc inside;
 }
+li {
+    margin-bottom: 0.3em
+}
 
 a {
     font-weight: 700;
-    color: #0cf;
+    color: #4584a5;
     text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+    text-decoration: underline;
+}
+
+blockquote {
+    font-family: Baskerville;
+    font-style: italic;
+    margin: 0;
+}
+blockquote small {
+    margin-top: 1em;
+    display: block;
+    text-align: right;
 }
 
 .content--card h1,
