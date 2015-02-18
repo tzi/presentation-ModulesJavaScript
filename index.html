@@ -610,7 +610,7 @@ jQuery('.query').&lt;plugin>();
         return this.each( function() {
             var $button = $(this);
             $button.on('click', function(){
-                window.open($button.href, "", "width="+settings.width+", height="+settings.height);
+                window.open($button.attr('href'), "", "width="+settings.width+", height="+settings.height);
                 return false;
             });
         });
