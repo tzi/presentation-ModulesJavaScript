@@ -1,197 +1,89 @@
-(function(moduleName, window, document) {
-    var from = function(selector, selectedPlugins) {
-          var parent = document.querySelector(selector),
-            slides = [].slice.call(parent.children, 0),
-            activeSlide = slides[0],
-            deckListeners = {},
+/*!
+ * Bespoke.js v1.0.0
+ *
+ * Copyright 2014, Mark Dalgleish
+ * This content is released under the MIT license
+ * http://mit-license.org/markdalgleish
+ */
 
-            activate = function(index, customData) {
-                if (!slides[index]) {
-                    return;
-                }
+!function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.bespoke=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
+var from = function(selectorOrElement, plugins) {
+  var parent = selectorOrElement.nodeType === 1 ? selectorOrElement : document.querySelector(selectorOrElement),
+    slides = [].filter.call(parent.children, function(el) { return el.nodeName !== 'SCRIPT'; }),
+    activeSlide = slides[0],
+    listeners = {},
 
-                fire(deckListeners, 'deactivate', createEventData(activeSlide, customData));
+    activate = function(index, customData) {
+      if (!slides[index]) {
+        return;
+      }
 
-                activeSlide = slides[index];
+      fire('deactivate', createEventData(activeSlide, customData));
+      activeSlide = slides[index];
+      fire('activate', createEventData(activeSlide, customData));
+    },
 
-                slides.map(deactivate);
+    slide = function(index, customData) {
+      if (arguments.length) {
+        fire('slide', createEventData(slides[index], customData)) && activate(index, customData);
+      } else {
+        return slides.indexOf(activeSlide);
+      }
+    },
 
-                fire(deckListeners, 'activate', createEventData(activeSlide, customData));
+    step = function(offset, customData) {
+      var slideIndex = slides.indexOf(activeSlide) + offset;
 
-                addClass(activeSlide, 'active');
-                removeClass(activeSlide, 'inactive');
-            },
+      fire(offset > 0 ? 'next' : 'prev', createEventData(activeSlide, customData)) && activate(slideIndex, customData);
+    },
 
-            deactivate = function(slide, index) {
-                var offset = index - slides.indexOf(activeSlide),
-                  offsetClass = offset > 0 ? 'after' : 'before';
+    on = function(eventName, callback) {
+      (listeners[eventName] || (listeners[eventName] = [])).push(callback);
 
-                ['before(-\\d+)?', 'after(-\\d+)?', 'active', 'inactive'].map(removeClass.bind(null, slide));
-
-                slide !== activeSlide &&
-                ['inactive', offsetClass, offsetClass + '-' + Math.abs(offset)].map(addClass.bind(null, slide));
-            },
-
-            slide = function(index, customData) {
-                fire(deckListeners, 'slide', createEventData(slides[index], customData)) && activate(index, customData);
-            },
-
-            next = function(customData) {
-                var nextSlideIndex = slides.indexOf(activeSlide) + 1;
-
-                fire(deckListeners, 'next', createEventData(activeSlide, customData)) && activate(nextSlideIndex, customData);
-            },
-
-            prev = function(customData) {
-                var prevSlideIndex = slides.indexOf(activeSlide) - 1;
-
-                fire(deckListeners, 'prev', createEventData(activeSlide, customData)) && activate(prevSlideIndex, customData);
-            },
-
-            createEventData = function(slide, eventData) {
-                eventData = eventData || {};
-                eventData.index = slides.indexOf(slide);
-                eventData.slide = slide;
-                return eventData;
-            },
-
-            deck = {
-                on: on.bind(null, deckListeners),
-                off: off.bind(null, deckListeners),
-                fire: fire.bind(null, deckListeners),
-                slide: slide,
-                next: next,
-                prev: prev,
-                parent: parent,
-                slides: slides
-            };
-
-          addClass(parent, 'parent');
-
-          slides.map(function(slide) {
-              addClass(slide, 'slide');
-          });
-
-          Object.keys(selectedPlugins || {}).map(function(pluginName) {
-              var config = selectedPlugins[pluginName];
-              config && plugins[pluginName](deck, config === true ? {} : config);
-          });
-
-          activate(0);
-
-          decks.push(deck);
-
-          return deck;
-      },
-
-      decks = [],
-
-      bespokeListeners = {},
-
-      on = function(listeners, eventName, callback) {
-          (listeners[eventName] || (listeners[eventName] = [])).push(callback);
-      },
-
-      off = function(listeners, eventName, callback) {
-          listeners[eventName] = (listeners[eventName] || []).filter(function(listener) {
-              return listener !== callback;
-          });
-      },
-
-      fire = function(listeners, eventName, eventData) {
-          return (listeners[eventName] || [])
-            .concat((listeners !== bespokeListeners && bespokeListeners[eventName]) || [])
-            .reduce(function(notCancelled, callback) {
-                return notCancelled && callback(eventData) !== false;
-            }, true);
-      },
-
-      addClass = function(el, cls) {
-          el.classList.add(moduleName + '-' + cls);
-      },
-
-      removeClass = function(el, cls) {
-          el.className = el.className
-            .replace(new RegExp(moduleName + '-' + cls +'(\\s|$)', 'g'), ' ')
-            .replace(/^\s+|\s+$/g, '');
-      },
-
-      callOnAllInstances = function(method) {
-          return function(arg) {
-              decks.map(function(deck) {
-                  deck[method].call(null, arg);
-              });
-          };
-      },
-
-      bindPlugin = function(pluginName) {
-          return {
-              from: function(selector, selectedPlugins) {
-                  (selectedPlugins = selectedPlugins || {})[pluginName] = true;
-                  return from(selector, selectedPlugins);
-              }
-          };
-      },
-
-      makePluginForAxis = function(axis) {
-          return function(deck) {
-              var startPosition,
-                delta;
-
-              document.addEventListener('keydown', function(e) {
-                  if (document.activeElement.hasAttribute('contenteditable')) {
-                    return;
-                  }
-                  var key = e.which;
-
-                  (
-                    key === 34 || // PAGE DOWN
-                      key === 32 || // SPACE
-                      axis === 'X' && key === 39 || // RIGHT
-                      axis === 'Y' && key === 40 // BOTTOM
-                    ) && deck.next();
-                  (
-                    key === 33 || // PAGE UP
-                      axis === 'X' && key === 37 || // LEFT
-                      axis === 'Y' && key === 38 // TOP
-                    ) && deck.prev();
-              });
-
-              deck.parent.addEventListener('touchstart', function(e) {
-                  if (e.touches.length) {
-                      startPosition = e.touches[0]['page' + axis];
-                      delta = 0;
-                  }
-              });
-
-              deck.parent.addEventListener('touchmove', function(e) {
-                  if (e.touches.length) {
-                      e.preventDefault();
-                      delta = e.touches[0]['page' + axis] - startPosition;
-                  }
-              });
-
-              deck.parent.addEventListener('touchend', function() {
-                  Math.abs(delta) > 50 && (delta > 0 ? deck.prev() : deck.next());
-              });
-          };
-      },
-
-      plugins = {
-          horizontal: makePluginForAxis('X'),
-          vertical: makePluginForAxis('Y')
+      return function() {
+        listeners[eventName] = listeners[eventName].filter(function(listener) {
+          return listener !== callback;
+        });
       };
+    },
 
-    window[moduleName] = {
-        from: from,
-        slide: callOnAllInstances('slide'),
-        next: callOnAllInstances('next'),
-        prev: callOnAllInstances('prev'),
-        horizontal: bindPlugin('horizontal'),
-        vertical: bindPlugin('vertical'),
-        on: on.bind(null, bespokeListeners),
-        off: off.bind(null, bespokeListeners),
-        plugins: plugins
+    fire = function(eventName, eventData) {
+      return (listeners[eventName] || [])
+        .reduce(function(notCancelled, callback) {
+          return notCancelled && callback(eventData) !== false;
+        }, true);
+    },
+
+    createEventData = function(el, eventData) {
+      eventData = eventData || {};
+      eventData.index = slides.indexOf(el);
+      eventData.slide = el;
+      return eventData;
+    },
+
+    deck = {
+      on: on,
+      fire: fire,
+      slide: slide,
+      next: step.bind(null, 1),
+      prev: step.bind(null, -1),
+      parent: parent,
+      slides: slides
     };
 
-}('bespoke', this, document));
+  (plugins || []).forEach(function(plugin) {
+    plugin(deck);
+  });
+
+  activate(0);
+
+  return deck;
+};
+
+module.exports = {
+  from: from
+};
+
+},{}]},{},[1])
+(1)
+});

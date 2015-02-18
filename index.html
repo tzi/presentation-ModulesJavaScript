@@ -23,26 +23,74 @@
 
 
     <section>
-        <div class="content content--text">
-            <h2>La définition des fonctions</h2>
-            <form name="demo" class="editor">
-function foo() {}
-console.log(typeof foo, foo.name);
+        <div class="content">
+            <h2>Qui suis-je ?</h2>
+            <ul>
+                <li>Thomas ZILLIOX ;</li>
+                <li>Web développeur freelance : <b>CSS</b>, JS et PHP ;</li>
+                <li><a href="http://tzi.fr">http://tzi.fr</a> ;</li>
+                <li><a href="https://twitter.com/iamtzi">@iamtzi</a>.</li>
+            </ul>
+        </div>
+    </section>
 
-var foo = function () {};
-console.log(typeof foo, foo.name);
 
-var foo = function fooF() {};
-console.log(typeof foo, foo.name);
+    <section>
+        <div class="content content--card">
+            <h2>Pourquoi organiser </h2>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h2>1. D'où viennent les modules JavaScript</h2>
+            <p>Un rapide tour d'histoire :</p>
+            <ol>
+                <li>Pas de modules, un seul fichier <q>main.js</q> ;</li>
+                <li><b>Modules en augmentant l'isolation</b>, 1 module = 1 fichier ;</li>
+                <li>Modules en utilisant des patterns AMD ;</li>
+                <li>Modules natifs node ;</li>
+                <li>Modules natifs ES6.</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h2>1. Pourquoi organiser son code en modules ?</h2>
+            <p>Le but est de limiter d'exposer ses variables et ses fonctions pour :</p>
+            <ol>
+                <li><b>&Eacute;viter les conflits</b> <i>(et les bugs)</i> ;</li>
+                <li>Améliorer la maintenabilité ;</li>
+                <li>Permettre la réutilisation de projet en projets ;</li>
+                <li>Expliciter les options.</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>1A. &Eacute;viter les conflits... entre fonctions et variables</h2>
+            <form class="editor">
+// A function
+function foo1() {}
+
+// A string, with a conflicted name
+var foo1 = 'myString';
+
+console.log(typeof foo1);
             </form>
          </div>
     </section>
 
 
     <section>
-        <div class="content content--text">
-            <h2>La portée des variables</h2>
-            <form name="namespace" class="editor">
+        <div class="content">
+            <h2>1B. &Eacute;viter les conflits... entre fonctions et variables</h2>
+            <form class="editor">
 for (var i=0; i&lt;10; i++) {
     console.log(getRandomKey(16));
 }
@@ -59,8 +107,31 @@ function getRandomKey(length) {
     </section>
 
 
+    <section>
+        <div class="content">
+            <h2>1B. Comprendre... La définition des fonctions</h2>
+            <form class="editor">
+console.log(typeof foo1);
+
+// Declared function: Interpreted on compilation time
+function foo1() {}
+
+// Anonymous assigned function: Interpreted only on Runtime
+var foo2 = function () {};
+
+// Named assigned function: Have a name in stack traces
+var foo3 = function foo3F() {};
+            </form>
+         </div>
+    </section>
+
+
 </article>
 <script src="javascripts/bespoke.js"></script>
+<script src="javascripts/bespoke-classes.js"></script>
+<script src="javascripts/bespoke-keys.js"></script>
+<script src="javascripts/bespoke-touch.js"></script>
+<script src="javascripts/bespoke-hash.js"></script>
 <script src="javascripts/presentation.js"></script>
 <script src="javascripts/ace/ace.js"></script>
 <script src="javascripts/editor.js"></script>

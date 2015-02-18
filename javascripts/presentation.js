@@ -1,4 +1,9 @@
-bespoke.horizontal.from('article');
+var deck = bespoke.from('article', [
+	bespoke.plugins.classes(),
+	bespoke.plugins.keys('horizontal'),
+	bespoke.plugins.touch(),
+	bespoke.plugins.hash()
+]);
 
 // Remove page navigation trigerred by space kay down in code editor
 $$('.editor').forEach(function(element){
