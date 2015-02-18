@@ -19,6 +19,7 @@
         <div class="content content--card">
             <small class="classy">Des modèles clé-en-main pour </small>
             <h1>Organiser son code JavaScript</h1>
+            <img src="images/logo-lcdw.png" alt="Avec LaCuisineDuWeb"/>
         </div>
     </section>
 
@@ -34,6 +35,7 @@
                 <li>Je blog <i>(rarement)</i> sur mon site <a href="http://tzi.fr">http://tzi.fr</a> ;</li>
                 <li>Je tweete <i>(plus souvent)</i> sur <a href="https://twitter.com/iamtzi">@iamtzi</a>.</li>
             </ul>
+            <p>Vous pouvez voir cette présentation en ligne <a href="http://tzi.github.io/presentation-ModulesJavaScript/">http://tzi.github.io/presentation-ModulesJavaScript</a>.
         </div>
     </section>
 
@@ -534,7 +536,7 @@ var &lt;module> = require("&lt;module>");
 
 // Usage - File `main.js`
 // [...]
-$('#query').&lt;plugin>();
+jQuery('#query').&lt;plugin>();
             </form>
         </div>
     </section>
@@ -559,7 +561,7 @@ $('#query').&lt;plugin>();
 
 // Usage - File `main.js`
 // [...]
-$('#query').&lt;plugin>();
+jQuery('#query').&lt;plugin>();
             </form>
         </div>
     </section>
@@ -586,7 +588,38 @@ $('#query').&lt;plugin>();
 
 // Usage - File `main.js`
 // [...]
-$('.query').&lt;plugin>();
+jQuery('.query').&lt;plugin>();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.D. Modèle VIII - jQuery avec multi-éléments</h3>
+            <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript/" class="twitter">Tweet</a> !</p>
+            <form class="editor">
+// Definition - File `jquery.sharePopup.js`
+(function ($){
+    $.fn.sharePopup = function (options) {
+        this.defaults = {
+            width: 640,
+            height: 280
+        };
+        var settings = $.extend({}, this.defaults, options);
+        return this.each( function() {
+            var $button = $(this);
+            $button.on('click', function(){
+                window.open($button.href, "", "width="+settings.width+", height="+settings.height);
+                return false;
+            });
+        });
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+jQuery('.twitter, .facebook').sharePopup();
             </form>
         </div>
     </section>
@@ -628,13 +661,17 @@ $('.query').&lt;plugin>();
 
 // Usage - File `main.js`
 // [...]
-$('.query').&lt;plugin>();
+jQuery('.query').&lt;plugin>();
             </form>
         </div>
     </section>
 
 
 </article>
+<script src="javascripts/jquery-1.11.2.min.js"></script>
+<script>
+    $.noConflict();
+</script>
 <script src="javascripts/bespoke.js"></script>
 <script src="javascripts/bespoke-classes.js"></script>
 <script src="javascripts/bespoke-keys.js"></script>
