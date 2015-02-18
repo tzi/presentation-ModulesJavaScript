@@ -182,11 +182,33 @@ console.log(typeof organizer);
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I</h3>
+            <h3>2.C. Modèle I - Isolation</h3>
             <p>Un modèle pour exposer un service global.</p>
             <form class="editor">
-// File `&lt;myModule>.js`
-var myService = (function () {
+// Definition - File `&lt;module>.js`
+var &lt;service> = (function () {
+
+    // [...] The module code
+
+    // Return the main service function
+    return &lt;function>;
+})();
+
+// Usage - File `main.js`
+// [...]
+&lt;service>(arg1, arg2, ...);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.C. Modèle I - Isolation</h3>
+            <p>Une exemple avec un service de sortie d'écran.</p>
+            <form class="editor">
+// Definition - File `&lt;output>.js`
+var outputService = (function () {
 
     // [...] The module code
     function output(str) {
@@ -197,9 +219,9 @@ var myService = (function () {
     return output;
 })();
 
-// File `main.js`
+// Usage - File `main.js`
 // [...]
-myService('LaCuisineDuWeb');
+outputService('LaCuisineDuWeb');
             </form>
         </div>
     </section>
@@ -207,42 +229,37 @@ myService('LaCuisineDuWeb');
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I</h3>
-            <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
-            <form class="editor">
-// File `geolocation.js`
-var geolocate = (function () {
-
-    // Protected scope
-    var timeout = 10000;
-    var maximumAge = 300000;
-
-    function main(successCallback, errorCallback) {
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-            timeout: timeout,
-            maximumAge: maximumAge
-        });
-    }
-
-    // Exposed function
-    return main;
-})();
-
-// File `main.js`
-// [...] 418 lines later
-geolocate(console.log, console.log);
-            </form>
-        </div>
-    </section>
-
-
-    <section>
-        <div class="content">
-            <h3>2.D. Modèle II</h3>
+            <h3>2.D. Modèle II - Mutli-services</h3>
             <p>Un modèle pour exposer un en semble de service.</p>
             <form class="editor">
-// File `&lt;myModule>.js`
-var myService = (function () {
+// Definition - File `&lt;module>.js`
+var &lt;module> = (function () {
+
+    // [...] The module code
+
+    // Return a set of function
+    return {
+        &lt;service>: &lt;function>,
+        &lt;service2>: &lt;function2>,
+        // [...]
+    };
+})();
+
+// Usage - File `main.js`
+// [...]
+&lt;module>.&lt;service>(arg1, arg2, ...);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.D. Modèle II - Mutli-services</h3>
+            <p>Une exemple avec un service de sortie d'écran.</p>
+            <form class="editor">
+// Definition -File `&lt;output>.js`
+var outputService = (function () {
 
     // [...] The module code
     var buffer = [];
@@ -262,9 +279,9 @@ var myService = (function () {
     };
 })();
 
-// File `main.js`
+// Usage - File `main.js`
 // [...]
-myService.add('La').add('Cuisine').add('Du').add('Web').output();
+outputService.add('La').add('Cuisine').add('Du').add('Web').output();
             </form>
         </div>
     </section>
@@ -272,43 +289,160 @@ myService.add('La').add('Cuisine').add('Du').add('Web').output();
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle II</h3>
-            <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
+            <h3>2.E. Modèle III - Multi-instances</h3>
+            <p>Un modèle pour gérer plusieurs instances.</p>
             <form class="editor">
-// File `geolocation.js`
-var geolocationService = (function () {
+// Definition - File `&lt;module>.js`
+var &lt;module> = function () {
 
-    // Protected scope
-    var timeout = 10000;
-    var maximumAge = 300000;
+    // [...] The module code
 
-    function isAvailable() {
-        return 'geolocation' in navigator;
-    }
-
-    function geolocate(successCallback, errorCallback) {
-        if (! isAvailable) {
-            errorCallback();
-            return;
-        }
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-            timeout: timeout,
-            maximumAge: maximumAge
-        });
-    }
-
-    // Exposed function
+    // Return a set of function
     return {
-        isAvailable: isAvailable,
-        geolocate: geolocate
+        &lt;service>: &lt;function>,
+        &lt;service2>: &lt;function2>,
+        // [...]
     };
-})();
+};
 
-// File `main.js`
-// [...] 418 lines later
-if (geolocationService.isAvailable) {
-    geolocationService.geolocate(console.log, console.log);
-}
+// Usage - File `main.js` or in another module !
+// [...]
+&lt;instance> = &lt;module>();
+&lt;instance>.&lt;service>(arg1, arg2, ...);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.E. Modèle III - Multi-instances</h3>
+            <p>Une exemple avec un service de sortie d'écran.</p>
+            <form class="editor">
+// Definition - File `&lt;output>.js`
+var outputModule = function () {
+
+    // [...] The module code
+    var buffer = [];
+    function add(value) {
+        buffer.push(value);
+        return this;
+    }
+    function output() {
+        console.log(buffer.join(' '));
+        buffer = [];
+    }
+
+    // Expose the service in the ask set
+    return {
+        add: add,
+        output: output
+    };
+};
+
+// Usage - File `main.js` or in another module !
+// [...]
+var outputService = outputModule();
+outputService.add('La').add('Cuisine').add('Du').add('Web').output();
+// or
+var services = {};
+services.outputService = outputBufferModule();
+services.outputService.add('Isolated').add('JavaScript').add('FTW').output();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.F. Modèle IV - Avec dépendances dynamiques</h3>
+            <p>Un modèle pour gérer les dépendances.</p>
+            <form class="editor">
+// Definition - File `&lt;module>.js`
+var &lt;module> = function (dependency1, dependency2, ...) {
+
+    // [...] The module code
+    // Using dependencies
+
+    // Return a set of function
+    return {
+        &lt;service>: &lt;function>,
+        &lt;service2>: &lt;function2>,
+        // [...]
+    };
+};
+
+// Usage - File `main.js` or in another module !
+// [...]
+&lt;instance> = &lt;module>(dependency1, dependency2, ...);
+&lt;instance>.&lt;service>(arg1, arg2, ...);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.F. Modèle IV - Avec dépendances dynamiques</h3>
+            <p>Une exemple avec un service de sortie d'écran.</p>
+            <form class="editor">
+// Definition - File `&lt;output>.js`
+var outputModule = function (dependency) {
+
+    // [...] The module code
+    var buffer = [];
+    function add(value) {
+        buffer.push(value);
+        return this;
+    }
+    function output() {
+        dependency(buffer.join(' '));
+        buffer = [];
+    }
+
+    // Expose the service in the ask set
+    return {
+        add: add,
+        output: output
+    };
+};
+
+// File `main.js` or in another module !
+// [...]
+var logger = {};
+logger.log = outputModule(console.log);
+logger.error = outputModule(alert);
+logger.log.add('La').add('Cuisine').add('Du').add('Web').output();
+logger.error.add('Isolated').add('JavaScript').add('FTW').output();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.F. Modèle V - Avec AMD</h3>
+            <p>Un modèle pour gérer les dépendances.</p>
+            <form class="editor">
+// Definition - File `&lt;module>.js`
+define(['dependency1', 'dependency2', ...], function (dependency1, dependency2, ...) {
+
+    // [...] The module code
+    // Using dependencies
+
+    // Return a set of function
+    return {
+        &lt;service>: &lt;function>,
+        &lt;service2>: &lt;function2>,
+        // [...]
+    };
+};
+
+// Usage - File `main.js`
+// [...]
+require(["&lt;module>"], function(&lt;module>) {
+    &lt;module>.&lt;service>(arg1, arg2, ...);
+});
             </form>
         </div>
     </section>
