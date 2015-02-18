@@ -182,7 +182,7 @@ console.log(typeof organizer);
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I - Isolation</h3>
+            <h3>2.C. Modèle I - Vanilla avec isolation</h3>
             <p>Un modèle pour exposer un service global.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -204,7 +204,7 @@ var &lt;module> = (function () {
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I - Isolation</h3>
+            <h3>2.C. Modèle I - Vanilla avec isolation</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -229,7 +229,7 @@ outputModule('LaCuisineDuWeb');
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Mutli-services</h3>
+            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
             <p>Un modèle pour exposer un semble de service.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -255,7 +255,7 @@ var &lt;module> = (function () {
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Mutli-services</h3>
+            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition -File `&lt;output>.js`
@@ -289,7 +289,7 @@ outputService.push('La').push('Cuisine').push('Du').push('Web').output();
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Mutli-services</h3>
+            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
             <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
             <form class="editor">
 // Definition - File `geolocation.js`
@@ -343,7 +343,7 @@ if (geolocationService.isAvailable) {
 
     <section>
         <div class="content">
-            <h3>2.E. Modèle III - Multi-instances</h3>
+            <h3>2.E. Modèle III - Vanilla avec multi-instances</h3>
             <p>Un modèle pour gérer plusieurs instances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -370,7 +370,7 @@ var &lt;module> = function () {
 
     <section>
         <div class="content">
-            <h3>2.E. Modèle III - Multi-instances</h3>
+            <h3>2.E. Modèle III - Vanilla avec multi-instances</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -409,7 +409,7 @@ services.outputService.push('Isolated').push('JavaScript').push('FTW').output();
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle IV - Avec dépendances dynamiques</h3>
+            <h3>2.F. Modèle IV - Vanilla avec dépendances dynamiques</h3>
             <p>Un modèle pour gérer les dépendances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -437,7 +437,7 @@ var &lt;module> = function (dependency1, dependency2, ...) {
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle IV - Avec dépendances dynamiques</h3>
+            <h3>2.F. Modèle IV - Vanilla avec dépendances dynamiques</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -475,7 +475,7 @@ logger.error.push('Isolated').push('JavaScript').push('FTW').output();
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle V - Avec AMD</h3>
+            <h3>2.F. Modèle V - AMD avec RequireJS</h3>
             <p>Un modèle pour gérer les dépendances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -495,6 +495,140 @@ define(['dependency1', 'dependency2', ...], function (dependency1, dependency2, 
 // Usage - File `main.js`
 // [...]
 var &lt;module> = require("&lt;module>");
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content content--card">
+            <h2>3. jQuery plugins </h2>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h2>3.A. Pourquoi utiliser de plugins jQuery ?</h2>
+            <p>Le but principal est de limiter d'améliorer la maintenance :</p>
+            <ol>
+                <li><b>Lier facilement du code à un élément DOM</b> ;</li>
+                <li>Réduire la quantité de coder en utilisant les APIs jQuery ;</li>
+                <li>Augmenter la lisibilité ;</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.B. Modèle VI - jQuery</h3>
+            <p>Un modèle pour commencer.</p>
+            <form class="editor">
+// Definition - File `&lt;jquery.plugin>.js`
+(function ($){
+    $.fn.&lt;plugin> = function() {
+        // [...] The plugin code
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+$('#query').&lt;plugin>();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.C. Modèle VII - jQuery avec options</h3>
+            <p>Un modèle qui permet d'avoir des options.</p>
+            <form class="editor">
+// Definition - File `&lt;jquery.plugin>.js`
+(function ($){
+    $.fn.&lt;plugin> = function (options) {
+        this.defaults = {
+            // [...] The plugin default options
+        };
+        var settings = $.extend({}, this.defaults, options);
+
+        // [...] The plugin code
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+$('#query').&lt;plugin>();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.D. Modèle VIII - jQuery avec multi-éléments</h3>
+            <p>Un modèle qui permet de gérer les une sélection de plusieurs éléments.</p>
+            <form class="editor">
+// Definition - File `&lt;jquery.plugin>.js`
+(function ($){
+    $.fn.&lt;plugin> = function (options) {
+        this.defaults = {
+            // [...] The plugin default options
+        };
+        var settings = $.extend({}, this.defaults, options);
+        return this.each( function() {
+            var $this = $( this );
+            // [...] The plugin code
+        });
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+$('.query').&lt;plugin>();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.E. Modèle IX - jQuery avec sous-actions</h3>
+            <p>Un modèle qui permet de gérer des sous-actions.</p>
+            <form class="editor">
+// Definition - File `&lt;jquery.plugin>.js`
+(function ($){
+    $.fn.&lt;plugin> = function (options) {
+        this.defaults = {
+            // [...] The plugin default options
+        };
+        var settings = $.extend({}, this.defaults, options);
+        return this.each( function() {
+            if (typeof params == 'string') {
+                this.&lt;plugin>[params]();
+            } else {
+                this.&lt;plugin> = new &lt;Plugin>($(this), params);
+            }
+        });
+
+        var &lt;Plugin> = function (container, params) {
+            this.init(container, params);
+        };
+
+        &lt;Plugin>.prototype.init: function () {
+            // [...] The initilization plugin code
+        }
+
+        &lt;Plugin>.prototype.&lt;subaction>: function () {
+            // [...] plugin action code
+        }
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+$('.query').&lt;plugin>();
             </form>
         </div>
     </section>
