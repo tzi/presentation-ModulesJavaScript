@@ -40,30 +40,15 @@
 
     <section>
         <div class="content content--card">
-            <h2>Pourquoi organiser </h2>
+            <h2>1. Pourquoi organiser </h2>
         </div>
     </section>
 
 
     <section>
         <div class="content">
-            <h2>1. D'où viennent les modules JavaScript</h2>
-            <p>Un rapide tour d'histoire :</p>
-            <ol>
-                <li>Pas de modules, un seul fichier <q>main.js</q> ;</li>
-                <li><b>Modules en augmentant l'isolation</b>, 1 module = 1 fichier ;</li>
-                <li>Modules en utilisant des patterns AMD ;</li>
-                <li>Modules natifs node ;</li>
-                <li>Modules natifs ES6.</li>
-            </ol>
-        </div>
-    </section>
-
-
-    <section>
-        <div class="content">
-            <h2>1. Pourquoi organiser son code en modules ?</h2>
-            <p>Le but est de limiter d'exposer ses variables et ses fonctions pour :</p>
+            <h2>1.A. Pourquoi organiser son code en modules ?</h2>
+            <p>Le but principal est de limiter l'exposition inutile de variables et de fonctions pour :</p>
             <ol>
                 <li><b>&Eacute;viter les conflits</b> <i>(et les bugs)</i> ;</li>
                 <li>Améliorer la maintenabilité ;</li>
@@ -76,13 +61,16 @@
 
     <section>
         <div class="content">
-            <h3>1A. &Eacute;viter les conflits... entre fonctions et variables</h2>
+            <h3>1.B. D'où viennent les conflits ?</h3>
+            <p>L'espace de nommage est partagé entre variables et fonctions.</p>
             <form class="editor">
 // A function
-function foo1() {}
+function foo() {}
+
+console.log(typeof foo1);
 
 // A string, with a conflicted name
-var foo1 = 'myString';
+var foo = 'LaCuisineDuWeb';
 
 console.log(typeof foo1);
             </form>
@@ -92,7 +80,27 @@ console.log(typeof foo1);
 
     <section>
         <div class="content">
-            <h2>1B. &Eacute;viter les conflits... entre fonctions et variables</h2>
+            <h3>1.B. D'où viennent les conflits ?</h3>
+            <p>L'espace de nommage est partagé en cascade.</p>
+            <form class="editor">
+var organizer = 'LaCuisineDuWeb';
+init();
+console.log('event', event);
+
+// Create a new `cascading` scope
+function init() {
+    var event = 'Atelier sur JavaScript';
+    console.log('organizer', organizer);
+}
+            </form>
+         </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>1.B. D'où viennent les conflits ?</h3>
+            <p>Savez-vous ce que va afficher ce script ?</p>
             <form class="editor">
 for (var i=0; i&lt;10; i++) {
     console.log(getRandomKey(16));
@@ -111,8 +119,32 @@ function getRandomKey(length) {
 
 
     <section>
+        <div class="content content--card">
+            <h2>2. &Eacute;crire des modules</h2>
+        </div>
+    </section>
+
+
+
+    <section>
         <div class="content">
-            <h2>1B. Comprendre... La définition des fonctions</h2>
+            <h2>2.A. L'état de l'art des modules JavaScript</h2>
+            <p>L'histoire des modules JavaScript en un slide :</p>
+            <ol>
+                <li>Pas de modules, un seul fichier <q>main.js</q> ;</li>
+                <li><b>Modules en augmentant l'isolation</b>, 1 module = 1 fichier ;</li>
+                <li>Modules en utilisant des patterns AMD ;</li>
+                <li>Modules natifs node ;</li>
+                <li>Modules natifs ES6.</li>
+            </ol>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.B. Isoler son code</h3>
+            <p>Les 50 nuances de fonctions JavaScript.</p>
             <form class="editor">
 console.log(typeof foo1);
 
@@ -126,6 +158,77 @@ var foo2 = function () {};
 var foo3 = function foo3F() {};
             </form>
          </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.B. Isoler son code</h3>
+            <p>Utiliser les fonctions anonymes pour protéger ses variables.</p>
+            <form class="editor">
+// Auto-executed anonymous function
+var anonymous = function () {
+    var organizer = 'LaCuisineDuWeb';  
+    // [...] my module here  
+};
+anonymous();
+
+console.log(typeof anonymous);
+console.log(typeof organizer);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.C. Modèle I</h3>
+            <p>Un modèle pour exposer un service global.</p>
+            <form class="editor">
+// File `&lt;myModule>.js`
+var myService = (function () {
+
+    // [...] The core code
+    function mainFunction(arg) {
+        console.log(arg);
+    }
+
+    // return the main service function
+    return mainFunction;
+})();
+
+// File `main.js`
+// [...]
+myService('LaCuisineDuWeb');
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.C. Modèle I</h3>
+            <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
+            <form class="editor">
+// File `geolocation.js`
+var geolocate = (function () {
+    // protected variables
+    var timeout = 10000;
+    var maximumAge = 300000;
+    // Exposed function
+    return function(successCallback, errorCallback) {
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
+            timeout: timeout,
+            maximumAge: maximumAge
+        });
+    }
+})();
+
+// File `main.js`
+// [...] 418 lines later
+geolocate(console.log, console.log);
+            </form>
+        </div>
     </section>
 
 
