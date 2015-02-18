@@ -289,6 +289,60 @@ outputService.push('La').push('Cuisine').push('Du').push('Web').output();
 
     <section>
         <div class="content">
+            <h3>2.D. Modèle II - Mutli-services</h3>
+            <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
+            <form class="editor">
+// Definition - File `geolocation.js`
+var geolocationService = (function () {
+
+    // Protected scope
+    var timeout = 10000;
+    var maximumAge = 300000;
+
+    function isAvailable() {
+        return 'geolocation' in navigator;
+    }
+
+    function setTimeout(value) {
+        timeout = value;
+    }
+
+    function setMaximumAge(value) {
+        maximumAge = value;
+    }
+
+    function geolocate(successCallback, errorCallback) {
+        if (! isAvailable) {
+            errorCallback();
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
+            timeout: timeout,
+            maximumAge: maximumAge
+        });
+    }
+
+    // Exposed function
+    return {
+        isAvailable: isAvailable,
+        setTimeout: setTimeout,
+        setMaximumAge: setMaximumAge,
+        geolocate: geolocate
+    };
+})();
+
+// Usage - File `main.js`
+// [...]
+if (geolocationService.isAvailable) {
+    geolocationService.geolocate(console.log, console.log);
+}
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
             <h3>2.E. Modèle III - Multi-instances</h3>
             <p>Un modèle pour gérer plusieurs instances.</p>
             <form class="editor">
