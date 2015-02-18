@@ -188,13 +188,13 @@ console.log(typeof organizer);
 // File `&lt;myModule>.js`
 var myService = (function () {
 
-    // [...] The core code
-    function mainFunction(arg) {
-        console.log(arg);
+    // [...] The module code
+    function output(str) {
+        console.log(str);
     }
 
-    // return the main service function
-    return mainFunction;
+    // Return the main service function
+    return output;
 })();
 
 // File `main.js`
@@ -212,21 +212,103 @@ myService('LaCuisineDuWeb');
             <form class="editor">
 // File `geolocation.js`
 var geolocate = (function () {
-    // protected variables
+
+    // Protected scope
     var timeout = 10000;
     var maximumAge = 300000;
-    // Exposed function
-    return function(successCallback, errorCallback) {
+
+    function main(successCallback, errorCallback) {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
             timeout: timeout,
             maximumAge: maximumAge
         });
     }
+
+    // Exposed function
+    return main;
 })();
 
 // File `main.js`
 // [...] 418 lines later
 geolocate(console.log, console.log);
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.D. Modèle II</h3>
+            <p>Un modèle pour exposer un en semble de service.</p>
+            <form class="editor">
+// File `&lt;myModule>.js`
+var myService = (function () {
+
+    // [...] The module code
+    var buffer = [];
+    function add(value) {
+        buffer.push(value);
+        return this;
+    }
+    function output() {
+        console.log(buffer.join(' '));
+        buffer = [];
+    }
+
+    // Return a set of function
+    return {
+        add: add,
+        output: output
+    };
+})();
+
+// File `main.js`
+// [...]
+myService.add('La').add('Cuisine').add('Du').add('Web').output();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>2.C. Modèle II</h3>
+            <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
+            <form class="editor">
+// File `geolocation.js`
+var geolocationService = (function () {
+
+    // Protected scope
+    var timeout = 10000;
+    var maximumAge = 300000;
+
+    function isAvailable() {
+        return 'geolocation' in navigator;
+    }
+
+    function geolocate(successCallback, errorCallback) {
+        if (! isAvailable) {
+            errorCallback();
+            return;
+        }
+        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
+            timeout: timeout,
+            maximumAge: maximumAge
+        });
+    }
+
+    // Exposed function
+    return {
+        isAvailable: isAvailable,
+        geolocate: geolocate
+    };
+})();
+
+// File `main.js`
+// [...] 418 lines later
+if (geolocationService.isAvailable) {
+    geolocationService.geolocate(console.log, console.log);
+}
             </form>
         </div>
     </section>
