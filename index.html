@@ -186,7 +186,7 @@ console.log(typeof organizer);
             <p>Un modèle pour exposer un service global.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
-var &lt;service> = (function () {
+var &lt;module> = (function () {
 
     // [...] The module code
 
@@ -196,7 +196,7 @@ var &lt;service> = (function () {
 
 // Usage - File `main.js`
 // [...]
-&lt;service>(arg1, arg2, ...);
+&lt;module>(arg1, arg2, ...);
             </form>
         </div>
     </section>
@@ -208,7 +208,7 @@ var &lt;service> = (function () {
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
-var outputService = (function () {
+var outputModule = (function () {
 
     // [...] The module code
     function output(str) {
@@ -221,7 +221,7 @@ var outputService = (function () {
 
 // Usage - File `main.js`
 // [...]
-outputService('LaCuisineDuWeb');
+outputModule('LaCuisineDuWeb');
             </form>
         </div>
     </section>
@@ -230,7 +230,7 @@ outputService('LaCuisineDuWeb');
     <section>
         <div class="content">
             <h3>2.D. Modèle II - Mutli-services</h3>
-            <p>Un modèle pour exposer un en semble de service.</p>
+            <p>Un modèle pour exposer un semble de service.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
 var &lt;module> = (function () {
@@ -263,7 +263,7 @@ var outputService = (function () {
 
     // [...] The module code
     var buffer = [];
-    function add(value) {
+    function push(value) {
         buffer.push(value);
         return this;
     }
@@ -274,14 +274,14 @@ var outputService = (function () {
 
     // Return a set of function
     return {
-        add: add,
+        push: push,
         output: output
     };
 })();
 
 // Usage - File `main.js`
 // [...]
-outputService.add('La').add('Cuisine').add('Du').add('Web').output();
+outputService.push('La').push('Cuisine').push('Du').push('Web').output();
             </form>
         </div>
     </section>
@@ -324,7 +324,7 @@ var outputModule = function () {
 
     // [...] The module code
     var buffer = [];
-    function add(value) {
+    function push(value) {
         buffer.push(value);
         return this;
     }
@@ -335,7 +335,7 @@ var outputModule = function () {
 
     // Expose the service in the ask set
     return {
-        add: add,
+        push: push,
         output: output
     };
 };
@@ -343,11 +343,11 @@ var outputModule = function () {
 // Usage - File `main.js` or in another module !
 // [...]
 var outputService = outputModule();
-outputService.add('La').add('Cuisine').add('Du').add('Web').output();
+outputService.push('La').push('Cuisine').push('Du').push('Web').output();
 // or
 var services = {};
-services.outputService = outputBufferModule();
-services.outputService.add('Isolated').add('JavaScript').add('FTW').output();
+services.outputService = outputModule();
+services.outputService.push('Isolated').push('JavaScript').push('FTW').output();
             </form>
         </div>
     </section>
@@ -391,7 +391,7 @@ var outputModule = function (dependency) {
 
     // [...] The module code
     var buffer = [];
-    function add(value) {
+    function push(value) {
         buffer.push(value);
         return this;
     }
@@ -402,7 +402,7 @@ var outputModule = function (dependency) {
 
     // Expose the service in the ask set
     return {
-        add: add,
+        push: push,
         output: output
     };
 };
@@ -412,8 +412,8 @@ var outputModule = function (dependency) {
 var logger = {};
 logger.log = outputModule(console.log);
 logger.error = outputModule(alert);
-logger.log.add('La').add('Cuisine').add('Du').add('Web').output();
-logger.error.add('Isolated').add('JavaScript').add('FTW').output();
+logger.log.push('La').push('Cuisine').push('Du').push('Web').output();
+logger.error.push('Isolated').push('JavaScript').push('FTW').output();
             </form>
         </div>
     </section>
@@ -440,9 +440,7 @@ define(['dependency1', 'dependency2', ...], function (dependency1, dependency2, 
 
 // Usage - File `main.js`
 // [...]
-require(["&lt;module>"], function(&lt;module>) {
-    &lt;module>.&lt;service>(arg1, arg2, ...);
-});
+var &lt;module> = require("&lt;module>");
             </form>
         </div>
     </section>
