@@ -1,7 +1,5 @@
-(function(){
+var editorModule = (function(){
 	var editorMap = [];
-
-	document.addEventListener('DOMContentLoaded', init, false);
 
 	function run(form) {
 		var code = editorMap[form.name].getSession().getValue();
@@ -21,9 +19,7 @@
 		}
 	}
 
-	function init() {
-		var editorElementList = $$('.editor');
-
+	function init(editorElementList) {
 		editorElementList.forEach(function(form, index) {
 			form.name = 'editor'+index;
 			var code = form.innerHTML.trim();
@@ -63,6 +59,8 @@
 				console.clear();
 			}, false);
 		});
+        
+        return editorElementList;
 	}
 
 	function getConsole(form) {
@@ -120,4 +118,8 @@
 			}
 		}
 	}
+    
+    return {
+        init: init
+    }
 })();
