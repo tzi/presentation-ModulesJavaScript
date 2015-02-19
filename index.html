@@ -184,7 +184,7 @@ console.log(typeof organizer);
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I - Vanilla avec isolation</h3>
+            <h3>2.C. Module Vanilla I - Avec isolation</h3>
             <p>Un modèle pour exposer un service global.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -206,7 +206,7 @@ var &lt;module> = (function () {
 
     <section>
         <div class="content">
-            <h3>2.C. Modèle I - Vanilla avec isolation</h3>
+            <h3>2.C. Module Vanilla I - Avec isolation</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -231,7 +231,7 @@ outputModule('LaCuisineDuWeb');
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
+            <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Un modèle pour exposer un semble de service.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -257,7 +257,7 @@ var &lt;module> = (function () {
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
+            <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition -File `&lt;output>.js`
@@ -291,7 +291,7 @@ outputService.push('La').push('Cuisine').push('Du').push('Web').output();
 
     <section>
         <div class="content">
-            <h3>2.D. Modèle II - Vanilla avec mutli-services</h3>
+            <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
             <form class="editor">
 // Definition - File `geolocation.js`
@@ -345,7 +345,7 @@ if (geolocationService.isAvailable) {
 
     <section>
         <div class="content">
-            <h3>2.E. Modèle III - Vanilla avec multi-instances</h3>
+            <h3>2.E. Module Vanilla III - Avec multi-instances</h3>
             <p>Un modèle pour gérer plusieurs instances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -372,7 +372,7 @@ var &lt;module> = function () {
 
     <section>
         <div class="content">
-            <h3>2.E. Modèle III - Vanilla avec multi-instances</h3>
+            <h3>2.E. Module Vanilla III - Avec multi-instances</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -411,7 +411,7 @@ services.outputService.push('Isolated').push('JavaScript').push('FTW').output();
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle IV - Vanilla avec dépendances dynamiques</h3>
+            <h3>2.F. Module Vanilla IV - Avec dépendances dynamiques</h3>
             <p>Un modèle pour gérer les dépendances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
@@ -439,7 +439,7 @@ var &lt;module> = function (dependency1, dependency2, ...) {
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle IV - Vanilla avec dépendances dynamiques</h3>
+            <h3>2.F. Module Vanilla IV - Avec dépendances dynamiques</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -477,8 +477,8 @@ logger.error.push('Isolated').push('JavaScript').push('FTW').output();
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle V - AMD avec RequireJS</h3>
-            <p>Un modèle pour gérer les dépendances.</p>
+            <h3>2.F. Module AMD I - Avec RequireJS</h3>
+            <p>Un modèle pour gérer des arbres de dépendances.</p>
             <form class="editor">
 // Definition - File `&lt;module>.js`
 define(['dependency1', 'dependency2', ...], function (dependency1, dependency2, ...) {
@@ -504,7 +504,7 @@ var &lt;module> = require("&lt;module>");
 
     <section>
         <div class="content">
-            <h3>2.F. Modèle V - AMD avec RequireJS</h3>
+            <h3>2.F. Module AMD I - Avec RequireJS</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
             <form class="editor">
 // Definition - File `&lt;output>.js`
@@ -561,7 +561,7 @@ require(['require', 'output'], function (require) {
 
     <section>
         <div class="content">
-            <h3>3.B. Modèle VI - jQuery</h3>
+            <h3>3.B. Plugin jQuery I - Avec multi-éléments</h3>
             <p>Un modèle pour commencer.</p>
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
@@ -584,7 +584,7 @@ jQuery('#query').&lt;plugin>();
 
     <section>
         <div class="content">
-            <h3>3.B. Modèle VI - jQuery</h3>
+            <h3>3.B. Plugin jQuery I - Avec multi-éléments</h3>
             <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterB">Tweet</a> !</p>
             <form class="editor">
 // Definition - File `jquery.sharePopup.js`
@@ -610,7 +610,7 @@ jQuery('.twitterB').sharePopup();
 
     <section>
         <div class="content">
-            <h3>3.C. Modèle VII - jQuery avec options</h3>
+            <h3>3.C. Plugin jQuery II - Avec options</h3>
             <p>Un modèle qui permet d'avoir des options.</p>
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
@@ -637,7 +637,7 @@ jQuery('.query').&lt;plugin>({option1: value1, option2: value2});
 
     <section>
         <div class="content">
-            <h3>3.C. Modèle VII - jQuery avec options</h3>
+            <h3>3.C. Plugin jQuery II - Avec options</h3>
             <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterC">Tweet</a> !</p>
             <form class="editor">
 // Definition - File `jquery.sharePopup.js`
@@ -668,7 +668,7 @@ jQuery('.twitterC').sharePopup({height: 400});
 
     <section>
         <div class="content">
-            <h3>3.D. Modèle IX - jQuery avec sous-actions</h3>
+            <h3>3.D. Plugin jQuery III - Avec sous-actions</h3>
             <p>Un modèle qui permet de gérer des sous-actions.</p>
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
