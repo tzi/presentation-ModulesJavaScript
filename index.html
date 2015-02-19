@@ -314,7 +314,7 @@ var geolocationService = (function () {
     }
 
     function geolocate(successCallback, errorCallback) {
-        if (! isAvailable) {
+        if (! isAvailable()) {
             errorCallback();
             return;
         }
