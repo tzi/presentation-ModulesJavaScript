@@ -503,6 +503,43 @@ var &lt;module> = require("&lt;module>");
 
 
     <section>
+        <div class="content">
+            <h3>2.F. Modèle V - AMD avec RequireJS</h3>
+            <p>Une exemple avec un service de sortie d'écran.</p>
+            <form class="editor">
+// Definition - File `&lt;output>.js`
+define("output", [], function () {
+                
+    // [...] The module code
+    var buffer = [];
+    function push(value) {
+        buffer.push(value);
+        return this;
+    }
+    function output() {
+        console.log(buffer.join(' '));
+        buffer = [];
+    }
+    
+    // Expose the service in the ask set
+    return {
+        push: push,
+        output: output
+    };
+});
+
+// File `main.js` or in another module !
+// [...]
+require(['require', 'output'], function (require) {
+    var logger = require('output');
+    logger.push('La').push('Cuisine').push('Du').push('Web').output();
+});
+            </form>
+        </div>
+    </section>
+
+
+    <section>
         <div class="content content--card">
             <h2>3. jQuery plugins </h2>
         </div>
