@@ -530,13 +530,42 @@ var &lt;module> = require("&lt;module>");
 // Definition - File `&lt;jquery.plugin>.js`
 (function ($){
     $.fn.&lt;plugin> = function() {
-        // [...] The plugin code
+        return this.each( function() {
+            var $this = $( this );
+            // [...] The plugin code where `$this` is every element
+        });
     };
 })(jQuery);
 
 // Usage - File `main.js`
 // [...]
 jQuery('#query').&lt;plugin>();
+            </form>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="content">
+            <h3>3.B. Modèle VI - jQuery</h3>
+            <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterB">Tweet</a> !</p>
+            <form class="editor">
+// Definition - File `jquery.sharePopup.js`
+(function ($){
+    $.fn.sharePopup = function (options) {
+        return this.each( function() {
+            var $button = $(this);
+            $button.on('click', function(){
+                window.open($button.attr('href'), "", "width=640, height=280");
+                return false;
+            });
+        });
+    };
+})(jQuery);
+
+// Usage - File `main.js`
+// [...]
+jQuery('.twitterB').sharePopup();
             </form>
         </div>
     </section>
@@ -549,46 +578,21 @@ jQuery('#query').&lt;plugin>();
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
 (function ($){
-    $.fn.&lt;plugin> = function (options) {
-        this.defaults = {
-            // [...] The plugin default options
-        };
-        var settings = $.extend({}, this.defaults, options);
-
-        // [...] The plugin code
+    var defaultOptions = {
+        // [...] The plugin default options
     };
-})(jQuery);
-
-// Usage - File `main.js`
-// [...]
-jQuery('#query').&lt;plugin>();
-            </form>
-        </div>
-    </section>
-
-
-    <section>
-        <div class="content">
-            <h3>3.D. Modèle VIII - jQuery avec multi-éléments</h3>
-            <p>Un modèle qui permet de gérer les une sélection de plusieurs éléments.</p>
-            <form class="editor">
-// Definition - File `&lt;jquery.plugin>.js`
-(function ($){
     $.fn.&lt;plugin> = function (options) {
-        this.defaults = {
-            // [...] The plugin default options
-        };
-        var settings = $.extend({}, this.defaults, options);
+        var options = $.extend({}, defaultOptions, options);
         return this.each( function() {
             var $this = $( this );
-            // [...] The plugin code
+            // [...] The plugin code with `$this` is every element
         });
     };
 })(jQuery);
 
 // Usage - File `main.js`
 // [...]
-jQuery('.query').&lt;plugin>();
+jQuery('.query').&lt;plugin>({option1: value1, option2: value2});
             </form>
         </div>
     </section>
@@ -596,21 +600,21 @@ jQuery('.query').&lt;plugin>();
 
     <section>
         <div class="content">
-            <h3>3.D. Modèle VIII - jQuery avec multi-éléments</h3>
-            <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript/" class="twitter">Tweet</a> !</p>
+            <h3>3.C. Modèle VII - jQuery avec options</h3>
+            <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterC">Tweet</a> !</p>
             <form class="editor">
 // Definition - File `jquery.sharePopup.js`
 (function ($){
+    var defaultOptions = {
+        width: 640,
+        height: 280
+    };
     $.fn.sharePopup = function (options) {
-        this.defaults = {
-            width: 640,
-            height: 280
-        };
-        var settings = $.extend({}, this.defaults, options);
+        var options = $.extend({}, defaultOptions, options);
         return this.each( function() {
             var $button = $(this);
             $button.on('click', function(){
-                window.open($button.attr('href'), "", "width="+settings.width+", height="+settings.height);
+                window.open($button.attr('href'), "", "width="+options.width+", height="+options.height);
                 return false;
             });
         });
@@ -619,7 +623,7 @@ jQuery('.query').&lt;plugin>();
 
 // Usage - File `main.js`
 // [...]
-jQuery('.twitter, .facebook').sharePopup();
+jQuery('.twitterC').sharePopup({height: 400});
             </form>
         </div>
     </section>
@@ -627,21 +631,21 @@ jQuery('.twitter, .facebook').sharePopup();
 
     <section>
         <div class="content">
-            <h3>3.E. Modèle IX - jQuery avec sous-actions</h3>
+            <h3>3.D. Modèle IX - jQuery avec sous-actions</h3>
             <p>Un modèle qui permet de gérer des sous-actions.</p>
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
 (function ($){
+    var defaultOptions = {
+        // [...] The plugin default options
+    };
     $.fn.&lt;plugin> = function (options) {
-        this.defaults = {
-            // [...] The plugin default options
-        };
-        var settings = $.extend({}, this.defaults, options);
         return this.each( function() {
-            if (typeof params == 'string') {
-                this.&lt;plugin>[params]();
+            if (typeof options == 'string') {
+                this.&lt;plugin>[options]();
             } else {
-                this.&lt;plugin> = new &lt;Plugin>($(this), params);
+                var options = $.extend({}, defaultOptions, options);
+                this.&lt;plugin> = new &lt;Plugin>($(this), options);
             }
         });
 
