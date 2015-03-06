@@ -1,5 +1,6 @@
 // A function
-function foo() {}
+function foo() {
+}
 
 console.log(typeof foo);
 

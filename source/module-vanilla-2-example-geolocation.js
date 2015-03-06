@@ -18,7 +18,7 @@ var geolocationModule = (function () {
     }
 
     function geolocate(successCallback, errorCallback) {
-        if (! isAvailable()) {
+        if (!isAvailable()) {
             errorCallback();
             return;
         }

@@ -3,10 +3,12 @@ define("output", [], function () {
 
     // [...] The module code
     var buffer = [];
+
     function push(value) {
         buffer.push(value);
         return this;
     }
+
     function output() {
         console.log(buffer.join(' '));
         buffer = [];

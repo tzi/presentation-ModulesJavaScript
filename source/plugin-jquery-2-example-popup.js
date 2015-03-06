@@ -1,15 +1,15 @@
 // Definition - File `jquery.sharePopup.js`
-(function ($){
+(function ($) {
     var defaultOptions = {
         width: 640,
         height: 280
     };
     $.fn.sharePopup = function (options) {
-        var options = $.extend({}, defaultOptions, options);
-        return this.each( function() {
+        options = $.extend({}, defaultOptions, options);
+        return this.each(function () {
             var $button = $(this);
-            $button.on('click', function(){
-                window.open($button.attr('href'), "", "width="+options.width+", height="+options.height);
+            $button.on('click', function () {
+                window.open($button.attr('href'), "", "width=" + options.width + ", height=" + options.height);
                 return false;
             });
         });

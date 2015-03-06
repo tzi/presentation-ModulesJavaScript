@@ -1,14 +1,16 @@
 // Definition - File `output.js`
-function outputModuleGenerator(output) {
+function outputModuleGenerator(media) {
 
     // [...] The module code
     var buffer = [];
+
     function push(value) {
         buffer.push(value);
         return this;
     }
+
     function output() {
-        output(buffer.join(' '));
+        media(buffer.join(' '));
         buffer = [];
     }
 

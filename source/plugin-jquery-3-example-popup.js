@@ -1,26 +1,23 @@
-// Definition - File `jquery.myPlugin.js`
+// Definition - File `jquery.sharePopup.js`
 (function ($) {
-    
-    // Vanilla module pluginGenerator
     var defaultOptions = {
-        // [...] The plugin default options
+        width: 640,
+        height: 280
     };
-    var pluginGenerator = function myPlugin($container, options) {
+    var pluginGenerator = function sharePopup($button, options) {
+        $button.on('click', function () {
+            window.open($button.attr('href'), "", "width=" + options.width + ", height=" + options.height);
+            return false;
+        });
 
-        // [...] The module code with `$container` is every element
-        function myService1() {
+        function open() {
+            $button.click();
         }
 
-        function myService2() {
-        }
-
-        // Return a set of function
         return {
-            myAction1: myAction1,
-            myAction2: myAction2
-            // [...]
-        };
-    };
+            open: open
+        }
+    }
 
     // jQuery plugin encapsulation 
     var pluginName = pluginGenerator.name;
@@ -42,5 +39,5 @@
 
 // Usage - File `main.js`
 // [...]
-jQuery('.query').myPlugin({option1: value1});
-jQuery('.query').myPlugin('myAction1', argument1);
+jQuery('.twitterD').sharePopup({height: 400});
+jQuery('.twitterD').sharePopup('open');

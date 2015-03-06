@@ -2,9 +2,12 @@
 var myModule = (function () {
 
     // [...] The module code
-    function myService1() {}
-    function myService2() {}
-    
+    function myService1() {
+    }
+
+    function myService2() {
+    }
+
     // Return a set of function
     return {
         myService1: myService1,

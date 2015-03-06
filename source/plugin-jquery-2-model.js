@@ -1,11 +1,11 @@
 // Definition - File `jquery.myPlugin.js`
-(function ($){
+(function ($) {
     var defaultOptions = {
         // [...] The plugin default options
     };
     $.fn.myPlugin = function (options) {
-        var options = $.extend({}, defaultOptions, options);
-        return this.each( function() {
+        options = $.extend({}, defaultOptions, options);
+        return this.each(function () {
             // [...] The plugin code with `this` is every element
         });
     };

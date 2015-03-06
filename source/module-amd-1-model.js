@@ -2,8 +2,11 @@
 define(['dependency1', 'dependency2'], function (dependency1, dependency2) {
 
     // [...] The module code
-    function myService1() {}
-    function myService2() {}
+    function myService1() {
+    }
+
+    function myService2() {
+    }
 
     // Return a set of function
     return {
