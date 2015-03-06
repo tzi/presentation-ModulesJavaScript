@@ -16,8 +16,8 @@
 
         // Return a set of function
         return {
-            myAction1: myAction1,
-            myAction2: myAction2
+            myAction1: myService1,
+            myAction2: myService2
             // [...]
         };
     };
