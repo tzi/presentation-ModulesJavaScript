@@ -672,37 +672,46 @@ jQuery('.twitterC').sharePopup({height: 400});
             <p>Un modèle qui permet de gérer des sous-actions.</p>
             <form class="editor">
 // Definition - File `&lt;jquery.plugin>.js`
-(function ($){
+(function($) {
+
+    // default options
     var defaultOptions = {
         // [...] The plugin default options
     };
-    $.fn.&lt;plugin> = function (options) {
-        return this.each( function() {
-            if (typeof options == 'string') {
-                this.&lt;plugin>[options]();
-            } else {
-                var options = $.extend({}, defaultOptions, options);
-                this.&lt;plugin> = new &lt;Plugin>($(this), options);
-            }
-        });
 
-        var &lt;Plugin> = function (container, params) {
-            this.init(container, params);
+    $.fn.&lt;plugin> = function(action) {
+        if (typeof action == 'string') {
+            var methodName = action;
+            var args = Array.prototype.slice.call(arguments, 1);
+            this.each(function() {
+                this.&lt;plugin>[methodName].apply(this.&lt;plugin>, args);
+            });
+        } else {
+            var options = $.extend(true, {}, defaultOptions, action);
+            this.each(function() {
+                this.&lt;plugin> = &lt;PluginService>(this, options);
+            });
+        }
+    }
+
+    function &lt;PluginService>(container, options) {
+
+        // [...] The module code
+        // Using dependencies
+
+        // Return a set of function
+        return {
+            &lt;subaction1>: &lt;function1>,
+            &lt;subaction2>: &lt;function2>,
+            // [...]
         };
-
-        &lt;Plugin>.prototype.init: function () {
-            // [...] The initilization plugin code
-        }
-
-        &lt;Plugin>.prototype.&lt;subaction>: function () {
-            // [...] plugin action code
-        }
-    };
+    }
 })(jQuery);
 
 // Usage - File `main.js`
 // [...]
-jQuery('.query').&lt;plugin>();
+jQuery('.query').&lt;plugin>({option1: value1});
+jQuery('.query').&lt;plugin>('subaction1');
             </form>
         </div>
     </section>
