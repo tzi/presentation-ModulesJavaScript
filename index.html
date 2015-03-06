@@ -65,16 +65,7 @@
         <div class="content">
             <h3>1.B. D'où viennent les conflits ?</h3>
             <p>L'espace de nommage est partagé entre variables et fonctions.</p>
-            <form class="editor">
-// A function
-function foo() {}
-
-console.log(typeof foo);
-
-// A string, with a conflicted name
-var foo = 'LaCuisineDuWeb';
-
-console.log(typeof foo);
+            <form class="editor" data-source="source/javascript-scope-conflict.js">
             </form>
          </div>
     </section>
@@ -84,16 +75,7 @@ console.log(typeof foo);
         <div class="content">
             <h3>1.B. D'où viennent les conflits ?</h3>
             <p>L'espace de nommage est partagé en cascade.</p>
-            <form class="editor">
-var organizer = 'LaCuisineDuWeb';
-init();
-console.log('event', event);
-
-// Create a new `cascading` scope
-function init() {
-    var event = 'Atelier sur JavaScript';
-    console.log('organizer', organizer);
-}
+            <form class="editor" data-source="source/javascript-scope-cascade.js">
             </form>
          </div>
     </section>
@@ -103,18 +85,7 @@ function init() {
         <div class="content">
             <h3>1.B. D'où viennent les conflits ?</h3>
             <p>Savez-vous ce que va afficher ce script ?</p>
-            <form class="editor">
-for (var i=0; i&lt;10; i++) {
-    console.log(getRandomKey(16));
-}
-
-function getRandomKey(length) {
-    key = '';
-    for (i=0; i&lt;length; i++) {
-        key += Math.floor(Math.random() * 10);
-    }
-    return key;
-}
+            <form class="editor" data-source="source/javascript-scope-problem.js">
             </form>
         </div>
     </section>
@@ -147,17 +118,7 @@ function getRandomKey(length) {
         <div class="content">
             <h3>2.B. Isoler son code</h3>
             <p>Les 50 nuances de fonctions JavaScript.</p>
-            <form class="editor">
-console.log(typeof foo1);
-
-// Declared function: Interpreted on compilation time
-function foo1() {}
-
-// Anonymous assigned function: Interpreted only on Runtime
-var foo2 = function () {};
-
-// Named assigned function: Have a name in stack traces
-var foo3 = function foo3F() {};
+            <form class="editor" data-source="source/javascript-scope-function-declaration.js">
             </form>
          </div>
     </section>
@@ -167,16 +128,7 @@ var foo3 = function foo3F() {};
         <div class="content">
             <h3>2.B. Isoler son code</h3>
             <p>Utiliser les fonctions anonymes pour protéger ses variables.</p>
-            <form class="editor">
-// Auto-executed anonymous function
-var anonymous = function () {
-    var organizer = 'LaCuisineDuWeb';  
-    // [...] my module here  
-};
-anonymous();
-
-console.log(typeof anonymous);
-console.log(typeof organizer);
+            <form class="editor" data-source="source/javascript-scope-function-anonymous.js">
             </form>
         </div>
     </section>
@@ -186,19 +138,7 @@ console.log(typeof organizer);
         <div class="content">
             <h3>2.C. Module Vanilla I - Avec isolation</h3>
             <p>Un modèle pour exposer un service global.</p>
-            <form class="editor">
-// Definition - File `&lt;module>.js`
-var &lt;module> = (function () {
-
-    // [...] The module code
-
-    // Return the main service function
-    return &lt;function>;
-})();
-
-// Usage - File `main.js`
-// [...]
-&lt;module>(arg1, arg2, ...);
+            <form class="editor" data-source="source/module-vanilla-1-model.js">
             </form>
         </div>
     </section>
@@ -208,22 +148,7 @@ var &lt;module> = (function () {
         <div class="content">
             <h3>2.C. Module Vanilla I - Avec isolation</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
-            <form class="editor">
-// Definition - File `&lt;output>.js`
-var outputModule = (function () {
-
-    // [...] The module code
-    function output(str) {
-        console.log(str);
-    }
-
-    // Return the main service function
-    return output;
-})();
-
-// Usage - File `main.js`
-// [...]
-outputModule('LaCuisineDuWeb');
+            <form class="editor" data-source="source/module-vanilla-1-example-output.js">
             </form>
         </div>
     </section>
@@ -233,23 +158,7 @@ outputModule('LaCuisineDuWeb');
         <div class="content">
             <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Un modèle pour exposer un semble de service.</p>
-            <form class="editor">
-// Definition - File `&lt;module>.js`
-var &lt;module> = (function () {
-
-    // [...] The module code
-
-    // Return a set of function
-    return {
-        &lt;service>: &lt;function>,
-        &lt;service2>: &lt;function2>,
-        // [...]
-    };
-})();
-
-// Usage - File `main.js`
-// [...]
-&lt;module>.&lt;service>(arg1, arg2, ...);
+            <form class="editor" data-source="source/module-vanilla-2-model.js">
             </form>
         </div>
     </section>
@@ -259,31 +168,7 @@ var &lt;module> = (function () {
         <div class="content">
             <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
-            <form class="editor">
-// Definition -File `&lt;output>.js`
-var outputService = (function () {
-
-    // [...] The module code
-    var buffer = [];
-    function push(value) {
-        buffer.push(value);
-        return this;
-    }
-    function output() {
-        console.log(buffer.join(' '));
-        buffer = [];
-    }
-
-    // Return a set of function
-    return {
-        push: push,
-        output: output
-    };
-})();
-
-// Usage - File `main.js`
-// [...]
-outputService.push('La').push('Cuisine').push('Du').push('Web').output();
+            <form class="editor" data-source="source/module-vanilla-2-example-output.js">
             </form>
         </div>
     </section>
@@ -293,51 +178,7 @@ outputService.push('La').push('Cuisine').push('Du').push('Web').output();
         <div class="content">
             <h3>2.D. Module Vanilla II - Avec mutli-services</h3>
             <p>Un exemple avec un service de géolocation <i>(simplifié)</i>.</p>
-            <form class="editor">
-// Definition - File `geolocation.js`
-var geolocationService = (function () {
-
-    // Protected scope
-    var timeout = 10000;
-    var maximumAge = 300000;
-
-    function isAvailable() {
-        return 'geolocation' in navigator;
-    }
-
-    function setTimeout(value) {
-        timeout = value;
-    }
-
-    function setMaximumAge(value) {
-        maximumAge = value;
-    }
-
-    function geolocate(successCallback, errorCallback) {
-        if (! isAvailable()) {
-            errorCallback();
-            return;
-        }
-        navigator.geolocation.getCurrentPosition(successCallback, errorCallback, {
-            timeout: timeout,
-            maximumAge: maximumAge
-        });
-    }
-
-    // Exposed function
-    return {
-        isAvailable: isAvailable,
-        setTimeout: setTimeout,
-        setMaximumAge: setMaximumAge,
-        geolocate: geolocate
-    };
-})();
-
-// Usage - File `main.js`
-// [...]
-if (geolocationService.isAvailable()) {
-    geolocationService.geolocate(console.log, console.log);
-}
+            <form class="editor" data-source="source/module-vanilla-2-example-geolocation.js">
             </form>
         </div>
     </section>
@@ -347,24 +188,7 @@ if (geolocationService.isAvailable()) {
         <div class="content">
             <h3>2.E. Module Vanilla III - Avec multi-instances</h3>
             <p>Un modèle pour gérer plusieurs instances.</p>
-            <form class="editor">
-// Definition - File `&lt;module>.js`
-var &lt;module> = function () {
-
-    // [...] The module code
-
-    // Return a set of function
-    return {
-        &lt;service>: &lt;function>,
-        &lt;service2>: &lt;function2>,
-        // [...]
-    };
-};
-
-// Usage - File `main.js` or in another module !
-// [...]
-&lt;instance> = &lt;module>();
-&lt;instance>.&lt;service>(arg1, arg2, ...);
+            <form class="editor" data-source="source/module-vanilla-3-model.js">
             </form>
         </div>
     </section>
@@ -374,36 +198,7 @@ var &lt;module> = function () {
         <div class="content">
             <h3>2.E. Module Vanilla III - Avec multi-instances</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
-            <form class="editor">
-// Definition - File `&lt;output>.js`
-var outputModule = function () {
-
-    // [...] The module code
-    var buffer = [];
-    function push(value) {
-        buffer.push(value);
-        return this;
-    }
-    function output() {
-        console.log(buffer.join(' '));
-        buffer = [];
-    }
-
-    // Expose the service in the ask set
-    return {
-        push: push,
-        output: output
-    };
-};
-
-// Usage - File `main.js` or in another module !
-// [...]
-var outputService = outputModule();
-outputService.push('La').push('Cuisine').push('Du').push('Web').output();
-// or
-var services = {};
-services.outputService = outputModule();
-services.outputService.push('Isolated').push('JavaScript').push('FTW').output();
+            <form class="editor" data-source="source/module-vanilla-3-example-output.js">
             </form>
         </div>
     </section>
@@ -413,25 +208,7 @@ services.outputService.push('Isolated').push('JavaScript').push('FTW').output();
         <div class="content">
             <h3>2.F. Module Vanilla IV - Avec dépendances dynamiques</h3>
             <p>Un modèle pour gérer les dépendances.</p>
-            <form class="editor">
-// Definition - File `&lt;module>.js`
-var &lt;module> = function (dependency1, dependency2, ...) {
-
-    // [...] The module code
-    // Using dependencies
-
-    // Return a set of function
-    return {
-        &lt;service>: &lt;function>,
-        &lt;service2>: &lt;function2>,
-        // [...]
-    };
-};
-
-// Usage - File `main.js` or in another module !
-// [...]
-&lt;instance> = &lt;module>(dependency1, dependency2, ...);
-&lt;instance>.&lt;service>(arg1, arg2, ...);
+            <form class="editor" data-source="source/module-vanilla-4-model.js">
             </form>
         </div>
     </section>
@@ -441,35 +218,7 @@ var &lt;module> = function (dependency1, dependency2, ...) {
         <div class="content">
             <h3>2.F. Module Vanilla IV - Avec dépendances dynamiques</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
-            <form class="editor">
-// Definition - File `&lt;output>.js`
-var outputModule = function (dependency) {
-
-    // [...] The module code
-    var buffer = [];
-    function push(value) {
-        buffer.push(value);
-        return this;
-    }
-    function output() {
-        dependency(buffer.join(' '));
-        buffer = [];
-    }
-
-    // Expose the service in the ask set
-    return {
-        push: push,
-        output: output
-    };
-};
-
-// File `main.js` or in another module !
-// [...]
-var logger = {};
-logger.log = outputModule(console.log);
-logger.error = outputModule(alert);
-logger.log.push('La').push('Cuisine').push('Du').push('Web').output();
-logger.error.push('Isolated').push('JavaScript').push('FTW').output();
+            <form class="editor" data-source="source/module-vanilla-4-example-output.js">
             </form>
         </div>
     </section>
@@ -479,24 +228,7 @@ logger.error.push('Isolated').push('JavaScript').push('FTW').output();
         <div class="content">
             <h3>2.F. Module AMD I - Avec RequireJS</h3>
             <p>Un modèle pour gérer des arbres de dépendances.</p>
-            <form class="editor">
-// Definition - File `&lt;module>.js`
-define(['dependency1', 'dependency2', ...], function (dependency1, dependency2, ...) {
-
-    // [...] The module code
-    // Using dependencies
-
-    // Return a set of function
-    return {
-        &lt;service>: &lt;function>,
-        &lt;service2>: &lt;function2>,
-        // [...]
-    };
-});
-
-// Usage - File `main.js`
-// [...]
-var &lt;module> = require("&lt;module>");
+            <form class="editor" data-source="source/module-amd-4-model.js">
             </form>
         </div>
     </section>
@@ -506,34 +238,7 @@ var &lt;module> = require("&lt;module>");
         <div class="content">
             <h3>2.F. Module AMD I - Avec RequireJS</h3>
             <p>Une exemple avec un service de sortie d'écran.</p>
-            <form class="editor">
-// Definition - File `&lt;output>.js`
-define("output", [], function () {
-                
-    // [...] The module code
-    var buffer = [];
-    function push(value) {
-        buffer.push(value);
-        return this;
-    }
-    function output() {
-        console.log(buffer.join(' '));
-        buffer = [];
-    }
-    
-    // Expose the service in the ask set
-    return {
-        push: push,
-        output: output
-    };
-});
-
-// File `main.js` or in another module !
-// [...]
-require(['require', 'output'], function (require) {
-    var logger = require('output');
-    logger.push('La').push('Cuisine').push('Du').push('Web').output();
-});
+            <form class="editor" data-source="source/module-amd-4-example-output.js">
             </form>
         </div>
     </section>
@@ -563,20 +268,8 @@ require(['require', 'output'], function (require) {
         <div class="content">
             <h3>3.B. Plugin jQuery I - Avec multi-éléments</h3>
             <p>Un modèle pour commencer.</p>
-            <form class="editor">
-// Definition - File `&lt;jquery.plugin>.js`
-(function ($){
-    $.fn.&lt;plugin> = function() {
-        return this.each( function() {
-            var $this = $( this );
-            // [...] The plugin code where `$this` is every element
-        });
-    };
-})(jQuery);
+            <form class="editor" data-source="source/plugin-jquery-1-model.js">
 
-// Usage - File `main.js`
-// [...]
-jQuery('#query').&lt;plugin>();
             </form>
         </div>
     </section>
@@ -586,23 +279,7 @@ jQuery('#query').&lt;plugin>();
         <div class="content">
             <h3>3.B. Plugin jQuery I - Avec multi-éléments</h3>
             <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterB">Tweet</a> !</p>
-            <form class="editor">
-// Definition - File `jquery.sharePopup.js`
-(function ($){
-    $.fn.sharePopup = function (options) {
-        return this.each( function() {
-            var $button = $(this);
-            $button.on('click', function(){
-                window.open($button.attr('href'), "", "width=640, height=280");
-                return false;
-            });
-        });
-    };
-})(jQuery);
-
-// Usage - File `main.js`
-// [...]
-jQuery('.twitterB').sharePopup();
+            <form class="editor" data-source="source/plugin-jquery-1-example-popup.js">
             </form>
         </div>
     </section>
@@ -612,24 +289,8 @@ jQuery('.twitterB').sharePopup();
         <div class="content">
             <h3>3.C. Plugin jQuery II - Avec options</h3>
             <p>Un modèle qui permet d'avoir des options.</p>
-            <form class="editor">
-// Definition - File `&lt;jquery.plugin>.js`
-(function ($){
-    var defaultOptions = {
-        // [...] The plugin default options
-    };
-    $.fn.&lt;plugin> = function (options) {
-        var options = $.extend({}, defaultOptions, options);
-        return this.each( function() {
-            var $this = $( this );
-            // [...] The plugin code with `$this` is every element
-        });
-    };
-})(jQuery);
+            <form class="editor" data-source="source/plugin-jquery-2-model.js">
 
-// Usage - File `main.js`
-// [...]
-jQuery('.query').&lt;plugin>({option1: value1, option2: value2});
             </form>
         </div>
     </section>
@@ -639,28 +300,8 @@ jQuery('.query').&lt;plugin>({option1: value1, option2: value2});
         <div class="content">
             <h3>3.C. Plugin jQuery II - Avec options</h3>
             <p>Un exemple avec les liens de partage. <a href="http://twitter.com/?status=Une super présentation pour apprendre à organiser son JavaScript http://tzi.github.io/presentation-ModulesJavaScript par @iamtzi" class="twitterC">Tweet</a> !</p>
-            <form class="editor">
-// Definition - File `jquery.sharePopup.js`
-(function ($){
-    var defaultOptions = {
-        width: 640,
-        height: 280
-    };
-    $.fn.sharePopup = function (options) {
-        var options = $.extend({}, defaultOptions, options);
-        return this.each( function() {
-            var $button = $(this);
-            $button.on('click', function(){
-                window.open($button.attr('href'), "", "width="+options.width+", height="+options.height);
-                return false;
-            });
-        });
-    };
-})(jQuery);
+            <form class="editor" data-source="source/plugin-jquery-2-example-popup.js">
 
-// Usage - File `main.js`
-// [...]
-jQuery('.twitterC').sharePopup({height: 400});
             </form>
         </div>
     </section>
@@ -670,48 +311,7 @@ jQuery('.twitterC').sharePopup({height: 400});
         <div class="content">
             <h3>3.D. Plugin jQuery III - Avec sous-actions</h3>
             <p>Un modèle qui permet de gérer des sous-actions.</p>
-            <form class="editor">
-// Definition - File `&lt;jquery.plugin>.js`
-(function($) {
-
-    // default options
-    var defaultOptions = {
-        // [...] The plugin default options
-    };
-
-    $.fn.&lt;plugin> = function(action) {
-        if (typeof action == 'string') {
-            var methodName = action;
-            var args = Array.prototype.slice.call(arguments, 1);
-            this.each(function() {
-                this.&lt;plugin>[methodName].apply(this.&lt;plugin>, args);
-            });
-        } else {
-            var options = $.extend(true, {}, defaultOptions, action);
-            this.each(function() {
-                this.&lt;plugin> = &lt;PluginService>(this, options);
-            });
-        }
-    }
-
-    function &lt;PluginService>(container, options) {
-
-        // [...] The module code
-        // Using dependencies
-
-        // Return a set of function
-        return {
-            &lt;subaction1>: &lt;function1>,
-            &lt;subaction2>: &lt;function2>,
-            // [...]
-        };
-    }
-})(jQuery);
-
-// Usage - File `main.js`
-// [...]
-jQuery('.query').&lt;plugin>({option1: value1});
-jQuery('.query').&lt;plugin>('subaction1');
+            <form class="editor" data-source="source/plugin-jquery-3-model.js">
             </form>
         </div>
     </section>

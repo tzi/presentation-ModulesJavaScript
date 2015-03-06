@@ -33,7 +33,7 @@ var editorModule = (function(){
 				html.push('</div>');	
 				html.push('<ul  class="console__log"></ul>');
 			html.push('</div>');	
-			form.innerHTML= html.join('');	
+			form.innerHTML= html.join('');
 		});
 
 		editorElementList.forEach(function(form) {
@@ -43,6 +43,17 @@ var editorModule = (function(){
 		    editor.setFontSize(20);
 		    editor.getSession().setMode("ace/mode/javascript");
 		    editorMap[formName] = editor;
+
+            if (form.hasAttribute('data-source')) {
+                var request = new XMLHttpRequest();
+                request.open('GET', form.getAttribute('data-source'), true);
+                request.onload = function() {
+                    if (this.status >= 200 && this.status < 400) {
+                        editor.getSession().setValue(this.response);
+                    }
+                }
+                request.send();
+            }
 
 			form.addEventListener('submit', function(event) {
 				event.preventDefault();
