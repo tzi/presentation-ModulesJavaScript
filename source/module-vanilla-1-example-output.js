@@ -12,4 +12,4 @@ var outputModule = (function () {
 
 // Usage - File `main.js`
 // [...]
-outputModule('LaCuisineDuWeb');
+outputModule('BrownBagLunch');

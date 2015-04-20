@@ -25,5 +25,5 @@ define("output", [], function () {
 // [...]
 require(['require', 'output'], function (require) {
     var logger = require('output');
-    logger.push('La').push('Cuisine').push('Du').push('Web').output();
+    logger.push('Brown').push('Bag').push('Lunch').output();
 });

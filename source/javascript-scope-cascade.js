@@ -1,4 +1,4 @@
-var organizer = 'LaCuisineDuWeb';
+var organizer = 'BrownBagLunch';
 init();
 console.log('event', event);
 

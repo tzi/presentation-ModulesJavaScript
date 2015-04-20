@@ -5,6 +5,6 @@ function foo() {
 console.log(typeof foo);
 
 // A string, with a conflicted name
-var foo = 'LaCuisineDuWeb';
+var foo = 'BrownBagLunch';
 
 console.log(typeof foo);

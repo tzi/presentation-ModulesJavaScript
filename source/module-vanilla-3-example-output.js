@@ -24,7 +24,7 @@ function outputModuleGenerator() {
 // Usage - File `main.js` or in another module !
 // [...]
 var outputModule = outputModuleGenerator();
-outputModule.push('La').push('Cuisine').push('Du').push('Web').output();
+outputModule.push('La').push('Brown').push('Bag').push('Lunch').output();
 // or
 var modules = {};
 modules.outputModule = outputModuleGenerator();

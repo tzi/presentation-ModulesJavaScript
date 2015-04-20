@@ -23,4 +23,4 @@ var outputModule = (function () {
 
 // Usage - File `main.js`
 // [...]
-outputModule.push('La').push('Cuisine').push('Du').push('Web').output();
+outputModule.push('Brown').push('Bag').push('Lunch').output();

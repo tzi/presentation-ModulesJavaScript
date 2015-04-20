@@ -26,5 +26,5 @@ function outputModuleGenerator(media) {
 var logger = {};
 logger.log = outputModuleGenerator(console.log);
 logger.error = outputModuleGenerator(alert);
-logger.log.push('La').push('Cuisine').push('Du').push('Web').output();
+logger.log.push('Brown').push('Bag').push('Lunch').output();
 logger.error.push('Isolated').push('JavaScript').push('FTW').output();

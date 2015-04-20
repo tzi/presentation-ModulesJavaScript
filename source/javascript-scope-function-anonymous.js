@@ -1,6 +1,6 @@
 // Auto-executed anonymous function
 var anonymous = function () {
-    var organizer = 'LaCuisineDuWeb';
+    var organizer = 'BrownBagLunch';
     // [...] my module here  
 };
 anonymous();
