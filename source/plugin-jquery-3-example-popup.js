@@ -17,7 +17,7 @@
         return {
             open: open
         }
-    }
+    };
 
     // jQuery plugin encapsulation 
     var pluginName = pluginGenerator.name;
@@ -40,4 +40,5 @@
 // Usage - File `main.js`
 // [...]
 jQuery('.twitterD').sharePopup({height: 400});
+// [...]
 jQuery('.twitterD').sharePopup('open');
