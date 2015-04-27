@@ -21,9 +21,13 @@ define("output", [], function () {
     };
 });
 
-// File `main.js` or in another module !
-// [...]
-require(['require', 'output'], function (require) {
-    var logger = require('output');
+// In another module !
+require(['output'], function (logger) {
     logger.push('Brown').push('Bag').push('Lunch').output();
+});
+
+// File `main.js`
+require(['require'], function (require) {
+    var logger = require('output');
+    logger.push('Isolated').push('JavaScript').push('FTW').output();
 });
