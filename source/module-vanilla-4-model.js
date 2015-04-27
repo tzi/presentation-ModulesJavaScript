@@ -1,5 +1,6 @@
 // Definition - File `myModule.js`
 function myModuleGenerator(dependency1, dependency2) {
+    "use strict";
 
     // [...] The module code
     function myService1() {

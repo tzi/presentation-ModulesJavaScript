@@ -1,5 +1,6 @@
 // Definition - File `myModule.js`
 var myModule = (function () {
+    "use strict";
 
     // [...] The module code
 

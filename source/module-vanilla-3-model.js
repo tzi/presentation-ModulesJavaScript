@@ -1,5 +1,6 @@
 // Definition - File `myModule.js`
 function myModuleGenerator() {
+    "use strict";
 
     // [...] The module code
     function myService1() {

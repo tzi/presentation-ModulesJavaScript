@@ -5,6 +5,8 @@
         height: 280
     };
     var pluginGenerator = function sharePopup($button, options) {
+        "use strict";
+        
         $button.on('click', function () {
             window.open($button.attr('href'), "", "width=" + options.width + ", height=" + options.height);
             return false;

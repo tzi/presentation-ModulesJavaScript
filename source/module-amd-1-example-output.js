@@ -1,5 +1,6 @@
 // Definition - File `output.js`
 define("output", [], function () {
+    "use strict";
 
     // [...] The module code
     var buffer = [];

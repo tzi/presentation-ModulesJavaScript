@@ -1,5 +1,6 @@
 // Definition -File `output.js`
 var outputModule = (function () {
+    "use strict";
 
     // [...] The module code
     var buffer = [];

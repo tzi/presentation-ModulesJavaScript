@@ -1,5 +1,6 @@
 // Definition - File `geolocation.js`
 var geolocationModule = (function () {
+    "use strict";
 
     // Protected scope
     var timeout = 10000;

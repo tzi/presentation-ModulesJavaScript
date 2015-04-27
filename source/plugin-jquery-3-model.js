@@ -6,6 +6,7 @@
         // [...] The plugin default options
     };
     var pluginGenerator = function myPlugin($container, options) {
+        "use strict";
 
         // [...] The module code with `$container` is every element
         function myService1() {
