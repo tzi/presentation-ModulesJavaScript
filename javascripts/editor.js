@@ -51,7 +51,7 @@ var editorModule = (function(){
                     if (this.status >= 200 && this.status < 400) {
                         editor.getSession().setValue(this.response);
                     }
-                }
+                };
                 request.send();
             }
 
@@ -91,7 +91,7 @@ var editorModule = (function(){
 				statusContainer.innerHTML = status.join(' - ');
 			},
 			log: function(message) {
-				messageList = Array.prototype.slice.call(arguments, 0);
+				var messageList = Array.prototype.slice.call(arguments, 0);
 				messageList.forEach(function(m, i){
 					if (m === '') {
 					    messageList[i] = '<i>empty string</i>';
@@ -113,7 +113,7 @@ var editorModule = (function(){
 				statusContainer.innerHTML = '';
 				logContainer.innerHTML = '';
 			}
-		}
+		};
 		function getNowLabel() {
 			var now = new Date();
 			var date = [];
