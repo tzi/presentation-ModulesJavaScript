@@ -44,4 +44,5 @@
 // Usage - File `main.js`
 // [...]
 jQuery('.query').myPlugin({option1: value1});
+// [...]
 jQuery('.query').myPlugin('myAction1', argument1);
