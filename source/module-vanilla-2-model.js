@@ -1,5 +1,5 @@
 // Definition - File `myModule.js`
-var myModule = (function () {
+var myModule = (function myGenerator() {
     "use strict";
 
     // [...] The module code

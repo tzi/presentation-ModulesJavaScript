@@ -1,5 +1,5 @@
 // Auto-executed anonymous function
-var anonymous = function () {
+var anonymous = function anonymousF() {
     var organizer = 'BrownBagLunch';
     // [...] my module here  
 };

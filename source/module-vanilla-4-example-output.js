@@ -1,5 +1,5 @@
 // Definition - File `output.js`
-function outputModuleGenerator(media) {
+function outputGenerator(media) {
     "use strict";
 
     // [...] The module code
@@ -25,7 +25,7 @@ function outputModuleGenerator(media) {
 // File `main.js` or in another module !
 // [...]
 var logger = {};
-logger.log = outputModuleGenerator(console.log);
-logger.error = outputModuleGenerator(alert);
+logger.log = outputGenerator(console.log);
+logger.error = outputGenerator(alert);
 logger.log.push('Brown').push('Bag').push('Lunch').output();
 logger.error.push('Isolated').push('JavaScript').push('FTW').output();

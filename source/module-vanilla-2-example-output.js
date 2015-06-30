@@ -1,5 +1,5 @@
 // Definition -File `output.js`
-var outputModule = (function () {
+var outputModule = (function outputGenerator() {
     "use strict";
 
     // [...] The module code
