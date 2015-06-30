@@ -1,5 +1,5 @@
 // Definition - File `output.js`
-define("output", [], function () {
+define("output", [], function outputGenerator() {
     "use strict";
 
     // [...] The module code

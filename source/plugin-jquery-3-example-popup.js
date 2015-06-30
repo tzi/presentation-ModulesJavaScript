@@ -7,9 +7,9 @@
     var pluginGenerator = function sharePopup($button, options) {
         "use strict";
         
-        $button.on('click', function () {
+        $button.on('click', function (event) {
+            event.preventDefault();
             window.open($button.attr('href'), "", "width=" + options.width + ", height=" + options.height);
-            return false;
         });
 
         function open() {
@@ -41,6 +41,6 @@
 
 // Usage - File `main.js`
 // [...]
-jQuery('.twitterD').sharePopup({height: 400});
+jQuery('.twitter3').sharePopup({height: 400});
 // [...]
-jQuery('.twitterD').sharePopup('open');
+jQuery('.twitter3').sharePopup('open');

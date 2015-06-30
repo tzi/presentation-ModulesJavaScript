@@ -6,16 +6,17 @@
     };
     $.fn.sharePopup = function (options) {
         options = $.extend({}, defaultOptions, options);
-        return this.each(function () {
+        this.each(function () {
             var $button = $(this);
-            $button.on('click', function () {
+            $button.on('click', function (event) {
+                event.preventDefault();
                 window.open($button.attr('href'), "", "width=" + options.width + ", height=" + options.height);
-                return false;
             });
         });
+        return this;
     };
 })(jQuery);
 
 // Usage - File `main.js`
 // [...]
-jQuery('.twitterC').sharePopup({height: 400});
+jQuery('.twitter2').sharePopup({height: 400});

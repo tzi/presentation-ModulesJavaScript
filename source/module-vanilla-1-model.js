@@ -10,4 +10,4 @@ var myModule = (function myGenerator() {
 
 // Usage - File `main.js`
 // [...]
-myModule(arg1, arg2);
+myModule(option1, option2);

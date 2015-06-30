@@ -3,11 +3,9 @@ function myGenerator() {
     "use strict";
 
     // [...] The module code
-    function myService1() {
-    }
+    function myService1() {}
 
-    function myService2() {
-    }
+    function myService2() {}
 
     // Return a set of function
     return {
@@ -20,4 +18,4 @@ function myGenerator() {
 // Usage - File `main.js` or in another module !
 // [...]
 var myModule = myGenerator();
-myModule.myService1(arg1, arg2);
+myModule.myService1(option1, option2);

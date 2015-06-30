@@ -1,7 +1,6 @@
 // Definition - File `jquery.myPlugin.js`
 (function ($) {
     
-    // Vanilla module pluginGenerator
     var defaultOptions = {
         // [...] The plugin default options
     };
@@ -9,11 +8,10 @@
         "use strict";
 
         // [...] The module code with `$container` is every element
-        function myService1() {
-        }
+        
+        function myService1() {}
 
-        function myService2() {
-        }
+        function myService2() {}
 
         // Return a set of function
         return {
