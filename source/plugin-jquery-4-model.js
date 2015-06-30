@@ -6,7 +6,7 @@ var myGenerator = (function myDeclaration($) {
         // [...] The plugin default options
     };
 
-    return function sharePopupGeneratorF(selector, options) {
+    return function myGeneratorF(selector, options) {
 
         options = $.extend(true, {}, defaultOptions, options);
         
