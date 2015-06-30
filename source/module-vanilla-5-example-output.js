@@ -1,10 +1,6 @@
 // Definition - File `output.js`
 var outputGenerator = (function outputDeclaration(media) {
     "use strict";
-    
-    function rule() {
-        media('----------------');
-    }
 
     return function outputGeneratorF(prefix) {
         // [...] The module code
@@ -20,6 +16,10 @@ var outputGenerator = (function outputDeclaration(media) {
             media(buffer.join(' '));
             rule();
             buffer = [];
+        }
+
+        function rule() {
+            media('----------------');
         }
 
         // Expose the service in the ask set

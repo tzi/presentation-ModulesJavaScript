@@ -1,5 +1,5 @@
-// Definition - File `sharePopup.js`
-var myGenerator = (function yDeclaration($){
+// Definition - File `myModule.js`
+var myGenerator = (function myDeclaration($) {
     "use strict";
 
     var defaultOptions = {
@@ -27,6 +27,6 @@ var myGenerator = (function yDeclaration($){
 
 // Usage - File `main.js`
 // [...]
-var twitterModule = sharePopupGenerator('.twitter4', {height: 400});
+var myModule = myGenerator('.twitter4', {option1: value1});
 // [...]
-twitterModule.open();
+myModule.myService1(argument1, argument2);

@@ -1,13 +1,12 @@
 // Definition - File `myModule.js`
 var myGenerator = (function myDeclaration(dependency1, dependency2) {
     "use strict";
-
-    // [...] The module context
-    function myService1() {}
     
     return function myGeneratorF(argument1, argument2) {
 
         // [...] The module code
+        function myService1() {}
+        
         function myService2() {}
     
         // Return a set of function

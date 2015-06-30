@@ -41,6 +41,6 @@
 
 // Usage - File `main.js`
 // [...]
-jQuery('.twitter3').sharePopup({height: 400});
+jQuery('.twitter3').sharePopup({height: 450});
 // [...]
 jQuery('.twitter3').sharePopup('open');

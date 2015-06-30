@@ -31,6 +31,6 @@ var sharePopupGenerator = (function sharePopupDeclaration($){
 
 // Usage - File `main.js`
 // [...]
-var twitterModule = sharePopupGenerator('.twitter4', {height: 400});
+var twitterModule = sharePopupGenerator('.twitter4', {width: 400});
 // [...]
 twitterModule.open();

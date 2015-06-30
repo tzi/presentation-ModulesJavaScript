@@ -1,5 +1,5 @@
 // Definition - File `output.js`
-define("output", [], function outputDeclaration() {
+define("multi-output", [], function outputDeclaration() {
     "use strict";
 
     return function outputGenerator(media) {
@@ -26,13 +26,13 @@ define("output", [], function outputDeclaration() {
 });
 
 // Usage - In another module
-require(['output'], function (loggerGenerator) {
+require(['multi-output'], function (loggerGenerator) {
     var logger = loggerGenerator(console.log);
     logger.push('Brown').push('Bag').push('Lunch').output();
 });
 
 // Usage - File `main.js`
 require(['require'], function (require) {
-    var logger = require('output')(alert);
+    var logger = require('multi-output')(alert);
     logger.push('Isolated').push('JavaScript').push('FTW').output();
 });
