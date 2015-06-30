@@ -1,9 +1,11 @@
-// Returns a closure, a function that are can be used outside its definition scope
+// Returns a closure,
+// a function that can be used outside its definition scope
 function getClosure() {
     var organizer = 'BrownBagLunch';
-    return function init() {
+    function init() {
         console.log(organizer);
     }
+    return init;
 }
 
 var organizer = 'Google';
