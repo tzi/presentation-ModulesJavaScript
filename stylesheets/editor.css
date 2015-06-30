@@ -1,7 +1,7 @@
 .editor {
     display: flex;
     flex-direction: column;
-    height: 400px;
+    height: 540px;
 
     background: white;
     border: 1px #aaa solid;
