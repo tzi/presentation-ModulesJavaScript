@@ -1,5 +1,5 @@
 // Definition - File `myModule.js`
-function myGenerator() {
+function myConstructor() {
     "use strict";
 
     // [...] The module code
@@ -17,5 +17,5 @@ function myGenerator() {
 
 // Usage - File `main.js` or in another module !
 // [...]
-var myModule = myGenerator();
+var myModule = myConstructor();
 myModule.myService1(option1, option2);

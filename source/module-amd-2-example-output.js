@@ -2,7 +2,7 @@
 define("multi-output", [], function outputDeclaration() {
     "use strict";
 
-    return function outputGenerator(media) {
+    return function outputConstructor(media) {
 
         // [...] The module code
         var buffer = [];
@@ -26,8 +26,8 @@ define("multi-output", [], function outputDeclaration() {
 });
 
 // Usage - In another module
-require(['multi-output'], function (loggerGenerator) {
-    var logger = loggerGenerator(console.log);
+require(['multi-output'], function (loggerConstructor) {
+    var logger = loggerConstructor(console.log);
     logger.push('Brown').push('Bag').push('Lunch').output();
 });
 

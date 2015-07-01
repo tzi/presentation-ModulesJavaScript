@@ -1,5 +1,5 @@
 // Definition - File `geolocation.js`
-var geolocationModule = (function geolocationGenerator() {
+var geolocationModule = (function geolocationConstructor() {
     "use strict";
 
     // Protected scope

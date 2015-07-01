@@ -1,12 +1,12 @@
 // Definition - File `myModule.js`
-var myGenerator = (function myDeclaration($) {
+var myConstructor = (function myDeclaration($) {
     "use strict";
 
     var defaultOptions = {
         // [...] The plugin default options
     };
 
-    return function myGeneratorF(selector, options) {
+    return function myConstructorF(selector, options) {
 
         options = $.extend(true, {}, defaultOptions, options);
         
@@ -27,6 +27,6 @@ var myGenerator = (function myDeclaration($) {
 
 // Usage - File `main.js`
 // [...]
-var myModule = myGenerator('.twitter4', {option1: value1});
+var myModule = myConstructor('.twitter4', {option1: value1});
 // [...]
 myModule.myService1(argument1, argument2);

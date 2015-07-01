@@ -1,5 +1,5 @@
 // Definition - File `sharePopup.js`
-var sharePopupGenerator = (function sharePopupDeclaration($){
+var sharePopupConstructor = (function sharePopupDeclaration($){
     "use strict";
 
     var defaultOptions = {
@@ -7,7 +7,7 @@ var sharePopupGenerator = (function sharePopupDeclaration($){
         height: 280
     };
     
-    return function sharePopupGeneratorF(selector, options) {
+    return function sharePopupConstructorF(selector, options) {
 
         options = $.extend(true, {}, defaultOptions, options);
         $(document).on('click', selector, function (event) {
@@ -31,6 +31,6 @@ var sharePopupGenerator = (function sharePopupDeclaration($){
 
 // Usage - File `main.js`
 // [...]
-var twitterModule = sharePopupGenerator('.twitter4', {width: 400});
+var twitterModule = sharePopupConstructor('.twitter4', {width: 400});
 // [...]
 twitterModule.open();

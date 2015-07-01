@@ -1,5 +1,5 @@
 // Definition - File `output.js`
-function outputGenerator() {
+function outputConstructor() {
     "use strict";
 
     // [...] The module code
@@ -24,9 +24,9 @@ function outputGenerator() {
 
 // Usage - File `main.js` or in another module !
 // [...]
-var outputModule = outputGenerator();
+var outputModule = outputConstructor();
 outputModule.push('La').push('Brown').push('Bag').push('Lunch').output();
 // or
 var modules = {};
-modules.outputModule = outputGenerator();
+modules.outputModule = outputConstructor();
 modules.outputModule.push('Isolated').push('JavaScript').push('FTW').output();

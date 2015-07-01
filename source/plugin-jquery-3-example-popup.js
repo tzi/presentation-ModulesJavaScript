@@ -4,7 +4,7 @@
         width: 640,
         height: 280
     };
-    var pluginGenerator = function sharePopup($button, options) {
+    var pluginConstructor = function sharePopup($button, options) {
         "use strict";
         
         $button.on('click', function (event) {
@@ -22,12 +22,12 @@
     };
 
     // jQuery plugin encapsulation 
-    var pluginName = pluginGenerator.name;
+    var pluginName = pluginConstructor.name;
     $.fn[pluginName] = function (action) {
         if (typeof action !== 'string') {
             var options = $.extend(true, {}, defaultOptions, action);
             this.each(function () {
-                this[pluginName] = pluginGenerator($(this), options);
+                this[pluginName] = pluginConstructor($(this), options);
             });
         } else {
             var args = Array.prototype.slice.call(arguments, 1);

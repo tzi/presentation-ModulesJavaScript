@@ -1,8 +1,8 @@
 // Definition - File `output.js`
-var outputGenerator = (function outputDeclaration(media) {
+var outputConstructor = (function outputDeclaration(media) {
     "use strict";
 
-    return function outputGeneratorF(prefix) {
+    return function outputConstructorF(prefix) {
         // [...] The module code
         var buffer = [];
 
@@ -33,7 +33,7 @@ var outputGenerator = (function outputDeclaration(media) {
 // File `main.js` or in another module !
 // [...]
 var logger = {};
-logger.log = outputGenerator('INFO: ');
-logger.error = outputGenerator('ERROR: ');
+logger.log = outputConstructor('INFO: ');
+logger.error = outputConstructor('ERROR: ');
 logger.log.push('Brown').push('Bag').push('Lunch').output();
 logger.error.push('Isolated').push('JavaScript').push('FTW').output();

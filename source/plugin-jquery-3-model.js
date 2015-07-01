@@ -4,7 +4,7 @@
     var defaultOptions = {
         // [...] The plugin default options
     };
-    var pluginGenerator = function myPlugin($container, options) {
+    var pluginConstructor = function myPlugin($container, options) {
         "use strict";
 
         // [...] The module code with `$container` is every element
@@ -22,12 +22,12 @@
     };
 
     // jQuery plugin encapsulation 
-    var pluginName = pluginGenerator.name;
+    var pluginName = pluginConstructor.name;
     $.fn[pluginName] = function (action) {
         if (typeof action !== 'string') {
             var options = $.extend(true, {}, defaultOptions, action);
             this.each(function () {
-                this[pluginName] = pluginGenerator($(this), options);
+                this[pluginName] = pluginConstructor($(this), options);
             });
         } else {
             var args = Array.prototype.slice.call(arguments, 1);

@@ -2,7 +2,7 @@
 define(['dependency1', 'dependency2'], function myDeclaration(dependency1, dependency2) {
     "use strict";
 
-    return function myGenerator(argument1, argument2) {
+    return function myConstructor(argument1, argument2) {
         
         // [...] The module code
         function myService1() {}
@@ -20,5 +20,5 @@ define(['dependency1', 'dependency2'], function myDeclaration(dependency1, depen
 
 // Usage - File `main.js`
 // [...]
-var myGenerator = require("myModule");
-var myModule = myGenerator(argument1, argument2);
+var myConstructor = require("myModule");
+var myModule = myConstructor(argument1, argument2);

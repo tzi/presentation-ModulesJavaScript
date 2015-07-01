@@ -1,5 +1,5 @@
 // Definition - File `myModule.js`
-define(['dependency1', 'dependency2'], function myGenerator(dependency1, dependency2) {
+define(['dependency1', 'dependency2'], function myConstructor(dependency1, dependency2) {
     "use strict";
 
     // [...] The module code

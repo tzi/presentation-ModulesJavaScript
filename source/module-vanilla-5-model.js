@@ -1,8 +1,8 @@
 // Definition - File `myModule.js`
-var myGenerator = (function myDeclaration(dependency1, dependency2) {
+var myConstructor = (function myDeclaration(dependency1, dependency2) {
     "use strict";
     
-    return function myGeneratorF(argument1, argument2) {
+    return function myConstructorF(argument1, argument2) {
 
         // [...] The module code
         function myService1() {}
@@ -20,5 +20,5 @@ var myGenerator = (function myDeclaration(dependency1, dependency2) {
 
 // Usage - File `main.js` or in another module !
 // [...]
-var myModule = myGenerator(argument1, argument2);
+var myModule = myConstructor(argument1, argument2);
 myModule.myService1(option1, option2);
