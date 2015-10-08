@@ -1,14 +1,14 @@
 function newButton() {
-    var button = {};
-    button.onclick = function(){
-        console.log(i);
-    }
-    return button;
+    return {};
 }
 
 var buttonList = [];
 for (var i = 0; i < 5; i++) {
-    buttonList.push(newButton());
+    var button = newButton();
+    button.onclick = function(){
+        console.log(i);
+    };
+    buttonList[i] = button;
 }
 
 for (var j = 0; j < buttonList.length; j++) {
